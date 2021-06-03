@@ -18,4 +18,4 @@ MyApp.getInitialProps = async function({ Component, ctx }) {
   return { pageProps };
 }
 
-export default MyApp
+export default MyApp;

@@ -1,9 +1,10 @@
 import Link from 'next/link';
+import Navbar from './Navbar';
 
 export default function Header() {
     return(
         <div>
-            <p>I'm a navbar</p>
+            <Navbar />
         </div>
     )
 }
