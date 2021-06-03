@@ -14,6 +14,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { IsoOutlined } from '@material-ui/icons';
+import Movie from './Movie';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -79,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navbar() {
+export default function Navbar({ children }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -87,14 +89,16 @@ export default function Navbar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  
+
   const [query, setQuery] = React.useState('');
   const [movies, setMovies] = React.useState([]);
 
   const searchMovies = async (e) => {
     e.preventDefault();
 
-    const url = `http://img.omdbapi.com/?s=${query}&h=600&apikey=65137754`;
 
+    const url = `http://www.omdbapi.com/?s=${query}&apikey=65137754`;
     try {
         const res = await fetch(url);
         const data = await res.json();
@@ -105,6 +109,8 @@ export default function Navbar() {
     }
     
   }
+      
+  
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -195,8 +201,8 @@ export default function Navbar() {
           <Typography className={classes.title} variant="h6" noWrap>
             Material-UI
           </Typography>
-            <form onSubmit={searchMovies}>
           <div className={classes.search}>
+            <form onSubmit={searchMovies}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -210,8 +216,8 @@ export default function Navbar() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
-          </div>
             </form>
+          </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
@@ -250,6 +256,12 @@ export default function Navbar() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+
+        <ul>{movies.map((movie, id) =>
+            <Movie key={id} movie={movie} movies={movies} />)}
+        </ul>
+
     </div>
   );
 }
+

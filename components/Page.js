@@ -4,7 +4,7 @@ export default function Page({ children }) {
     return(
         <div>
             <Header />
-            <p>I'm a p</p>
+            <p> { children } </p>
         </div>
     )
 }
