@@ -1,10 +1,12 @@
 import Header from './Header';
+import Home from '../pages/index';
+
 
 export default function Page({ children }) {
     return(
         <div>
             <Header />
-            <p> { children } </p>
+            <Home>{ children }</Home>
         </div>
     )
 }

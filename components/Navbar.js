@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -16,6 +16,9 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { IsoOutlined } from '@material-ui/icons';
 import Movie from './Movie';
+import { useSelector, useDispatch } from 'react-redux';
+import { userQuery, selectQuery } from '../store/querySlice';
+import { connect } from 'react-redux'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -81,8 +84,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navbar({ children }) {
+function Navbar() {
   const classes = useStyles();
+  const search = useSelector(selectQuery);
+  const dispatch = useDispatch();
+  const [movies, setMovies] = useState([]);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -91,14 +97,12 @@ export default function Navbar({ children }) {
 
   
 
-  const [query, setQuery] = React.useState('');
-  const [movies, setMovies] = React.useState([]);
 
   const searchMovies = async (e) => {
     e.preventDefault();
 
 
-    const url = `http://www.omdbapi.com/?s=${query}&apikey=65137754`;
+    const url = `http://www.omdbapi.com/?s=${search}&apikey=65137754`;
     try {
         const res = await fetch(url);
         const data = await res.json();
@@ -106,10 +110,10 @@ export default function Navbar({ children }) {
         console.log(data);
     } catch(err) {
         console.error(err);
-    }
-    
+    }  
   }
-      
+
+ 
   
 
   const handleProfileMenuOpen = (event) => {
@@ -213,8 +217,8 @@ export default function Navbar({ children }) {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              value={search || ''}
+              onChange={(e) => dispatch(userQuery(e.target.value))}
             />
             </form>
           </div>
@@ -257,11 +261,19 @@ export default function Navbar({ children }) {
       {renderMobileMenu}
       {renderMenu}
 
-        <ul>{movies.map((movie, id) =>
-            <Movie key={id} movie={movie} movies={movies} />)}
-        </ul>
+        {/* <ul>{movies.map((movie, id) =>
+            <Movie key={id} />)}
+        </ul> */}
 
     </div>
   );
 }
 
+
+const mapStateToProps = (state) => ({
+  searched: state.search.search
+})
+
+const mapDispatchToProps = { userQuery }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
