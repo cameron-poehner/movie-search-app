@@ -5,11 +5,34 @@ import { connect } from 'react-redux'
 import { selectResults } from '../../components/Navbar'
 import { Title } from '@material-ui/icons';
 import Link from 'next/link'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        background: 'black',
+        margin: '0',
+        padding: '0',
+        color: 'white',
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100vw',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        height: '100vh',
+    },
+    Title: {
+        fontFamily: 'Roboto',
+        fontWeight: '200',
+        fontSize: '2rem',
+        textTransform: 'uppercased'
+    },
+}))
 
 
 export async function getServerSideProps({ query }) {
     const { id } = query;
     const url = `http://www.omdbapi.com/?s=${id}&apikey=65137754`
+    // const img = `http://img.omdbapi.com/?i=${}&h=600&apikey=65137754`
      const res = await fetch(url);
      const data = await res.json();
      return {
@@ -20,32 +43,17 @@ export async function getServerSideProps({ query }) {
 
 }
 
-export default function MoviesListPage({ data }) {
+export default function MoviesListPage({ data, query }) {
+    const classes = useStyles();
+
     const { Search } = data;
     console.log(Search);
     return (
-        <ul>
-            
+        <div className={classes.root}>
+            <h2 className={classes.Title}>Results for '{query.id}'</h2>
+          
             <MoviesList Search={Search} />
-            
-        </ul>
+        </div>
     )
 }
 
-// const mapStateToProps = state => ({
-//     list: state.results.results
-// })
-
-// const mapDispatchToProps = { moviesResults };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(MoviesListPage)
-
-{/* {Search.map(movie => {
-                const { Title, Year, imdbID} = movie;
-                return (
-                <li key={imdbID}>
-                    <Link href="/"><a>{Title}</a></Link>
-                 
-                    <p>{Year}</p></li> 
-            )})}
-            Movies List */}

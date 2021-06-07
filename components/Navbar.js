@@ -275,10 +275,6 @@ function Navbar() {
       {renderMobileMenu}
       {renderMenu}
 
-        {/* <ul>{movies.map((movie, id) =>
-            <Movie key={id} />)}
-        </ul> */}
-
     </div>
   );
 }

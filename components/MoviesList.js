@@ -2,39 +2,85 @@ import { moviesResults } from '../store/moviesSlice'
 import { useSelector, useDispatch } from 'react-redux';
 import { connect } from 'react-redux'
 import Link from 'next/link'
+import { makeStyles } from '@material-ui/core/styles'
 
-export async function getServerSideProps({ query }) {
-    const { id } = query;
-    const url = `http://www.omdbapi.com/?s=${id}&apikey=65137754`
-     const res = await fetch(url);
-     const data = await res.json();
-     return {
-         props: {
-             data 
-         }
-     }
+const useStyles = makeStyles((theme) => ({
+    root: {
+        margin: '0',
+        padding: '0',
+        background: 'black',
+        color: 'white',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        width: '60vw',
+        textAlign: 'left',
+        listStyle: 'none',
+        height: 'auto',
+    },
+    item: {
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        width: '100%',
+        height: '100px'
+    },
+    Poster: {
+        height: '100%',
+        width: '50px',
+        marginRight: '1rem'
+    },
+    Title: {
+        fontFamily: 'Roboto',
+        fontWeight: '200',
+        fontSize: '18px',
+        marginLeft: '2rem',
+        marginRight: '2rem',
+        letterSpacing: '2px',
+        '&:hover': {
+            color: 'blue',
 
-}
+        }
+    },
+    Year: {
+        fontFamily: 'Roboto',
+        textAlign: 'right',
+        letterSpacing: '5px'
+    },
+
+}))
 
 export default function MoviesList({ Search }) {
+    const classes = useStyles();
     console.log('data', Search)
     return (
-        
-            <li>
+
+            <ul className={classes.root}>
                 {Search.map(movie => {
-                  const { Title, Year, imdbID } = movie;
+                  const { Poster, Title, Year, imdbID } = movie;
                   return (
-                    <li key={imdbID}>
-                      <Link href="/">
-                        <a>
-                        {Title}
-                        </a>
+                    <li 
+                      key={imdbID}
+                      className={classes.item}>
+                      <img 
+                        src={Poster} 
+                        alt={imdbID} 
+                        className={classes.Poster} />  
+                       <Link 
+                        href="/movies/[id]"
+                        as={`/movies/${imdbID}`}
+                        >
+                          <a className={classes.Title}>
+                           {Title}
+                          </a>
                       </Link>
+                      <p className={classes.Year}>         
+                        ({ Year })
+                        </p>
                     </li>
-                )})}
-             MoviesList
-            
-            </li>
+                )})}        
+            </ul>
 
     
     )
