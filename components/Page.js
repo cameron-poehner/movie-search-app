@@ -6,7 +6,7 @@ export default function Page({ children }) {
     return(
         <div>
             <Header />
-            <Home>{ children }</Home>
+            { children }
         </div>
     )
 }

@@ -14,11 +14,14 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { IsoOutlined } from '@material-ui/icons';
+import { IsoOutlined, Router } from '@material-ui/icons';
 import Movie from './Movie';
 import { useSelector, useDispatch } from 'react-redux';
 import { userQuery, selectQuery } from '../store/querySlice';
 import { connect } from 'react-redux'
+import { moviesResults } from '../store/moviesSlice'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -87,8 +90,9 @@ const useStyles = makeStyles((theme) => ({
 function Navbar() {
   const classes = useStyles();
   const search = useSelector(selectQuery);
+  const router = useRouter();
   const dispatch = useDispatch();
-  const [movies, setMovies] = useState([]);
+  // const [movies, setMovies] = useState([]);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -106,13 +110,17 @@ function Navbar() {
     try {
         const res = await fetch(url);
         const data = await res.json();
-        setMovies(data.Search);
-        console.log(data);
-    } catch(err) {
+        dispatch(moviesResults(data));
+        router.push(`/search/${search}`);
+    } catch(err) { 
         console.error(err);
     }  
   }
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log(e);
+  // }
  
   
 
@@ -203,7 +211,13 @@ function Navbar() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            <Link
+              href="/" 
+            >
+              <a>
+                Material-UI
+              </a>
+            </Link>
           </Typography>
           <div className={classes.search}>
             <form onSubmit={searchMovies}>
@@ -269,11 +283,14 @@ function Navbar() {
   );
 }
 
+export const selectResults = state => state.results.value
+
 
 const mapStateToProps = (state) => ({
-  searched: state.search.search
+  searched: state.search.search,
+  resultsList: state.results.results
 })
 
-const mapDispatchToProps = { userQuery }
+const mapDispatchToProps = { userQuery, moviesResults }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

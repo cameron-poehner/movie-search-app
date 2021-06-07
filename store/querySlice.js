@@ -13,6 +13,8 @@ const querySlice = createSlice({
         },
     }, 
 })
+
+
 export const { userQuery } = querySlice.actions
 export const selectQuery = state => state.search.value
 export default querySlice.reducer
