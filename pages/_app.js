@@ -1,9 +1,11 @@
-import React from "react";
-import NextApp from "next/app";
+
 import withRedux from '../lib/withRedux'
 import { Provider } from 'react-redux'
 import Page from '../components/Page'
 import '../styles/globals.css'
+import NProgress from 'nprogress'
+import Router from 'next/router'
+import '../styles/nprogress.css'
 
 // class App extends NextApp {
 //   static async getInitialProps({ Component, ctx }) {
@@ -30,6 +32,10 @@ import '../styles/globals.css'
 //     );
 //   }
 // }
+
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps, reduxStore }) {
   return (

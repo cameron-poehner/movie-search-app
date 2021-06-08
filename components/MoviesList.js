@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles'
 import { Paper } from '@material-ui/core';
+import ErrorMessage from './ErrorMessage';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -53,9 +54,11 @@ const useStyles = makeStyles((theme) => ({
 
 }))
 
-export default function MoviesList({ Search }) {
+export default function MoviesList({ Search, data }) {
     const classes = useStyles();
+    // const { Error } = data;
     console.log('data', Search)
+    // if (Error) return <ErrorMessage Error={Error} query={query} />;
     return (
 
             <Paper elevation={3} className={classes.root}>
