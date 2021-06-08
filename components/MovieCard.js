@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
+import MovieHeading from './MovieHeading'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -8,9 +9,10 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
         display: 'flex',
         flexDirection: 'column',
-        width: '100vw',
+        width: '80vw',
+        height: '100vh',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'flex-start'
     },
     Title: {
         fontFamily: 'Roboto',
@@ -21,11 +23,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MovieCard({ data }) {
     const classes = useStyles();
-    const { Title } = data;
+    const { Title, Year } = data;
     return (
         <div className={classes.root}>
-            <h2 className={classes.Title}>{Title}</h2>
-            {/* <h2>Title: { Title } </h2> */}
+            {/* <h2 className={classes.Title}>{Title} ({Year})</h2> */}
+            <MovieHeading data={data} />
         </div>
     )
 }

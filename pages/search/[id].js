@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100vw',
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: '100vh',
+        height: 'auto',
     },
     Title: {
         fontFamily: 'Roboto',

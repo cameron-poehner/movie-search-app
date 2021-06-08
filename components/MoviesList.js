@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         width: '60vw',
         textAlign: 'left',
         listStyle: 'none',
-        height: 'auto',
+        height: '100vh',
     },
     item: {
         display: 'flex',
@@ -63,10 +63,19 @@ export default function MoviesList({ Search }) {
                     <li 
                       key={imdbID}
                       className={classes.item}>
+                      <Link 
+                        href="/movies/[id]"
+                        as={`/movies/${imdbID}`}
+                        >
+                      <a
+                    >
                       <img 
                         src={Poster} 
                         alt={imdbID} 
-                        className={classes.Poster} />  
+                        className={classes.Poster}
+                         />  
+                      </a>
+                      </Link>
                        <Link 
                         href="/movies/[id]"
                         as={`/movies/${imdbID}`}
