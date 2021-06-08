@@ -1,3 +1,4 @@
+import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 import MovieHeading from './MovieHeading'
 
@@ -9,25 +10,55 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
         display: 'flex',
         flexDirection: 'column',
-        width: '80vw',
-        height: '100vh',
-        justifyContent: 'center',
+        width: '70vw',
+        height: 'auto',
+        justifyContent: 'space-evenly',
         alignItems: 'flex-start'
     },
-    Title: {
-        fontFamily: 'Roboto',
-        fontWeight: '200',
-        
-    }
+    container: {
+        height: 'auto',
+        width: '70vw',
+        boxSizing: 'border-box',
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+    },
+    Poster: {
+       boxSizing: 'border-box',
+       height: '400px',
+       width: '260px'
+   },
+    descContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '70%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        padding: '4rem',
+        boxSizing: 'border-box'
+    },
+
 }))
 
 export default function MovieCard({ data }) {
     const classes = useStyles();
-    const { Title, Year } = data;
+    const { Poster, imdbID, Plot, Director, Writer, Actors } = data;
     return (
-        <div className={classes.root}>
-            {/* <h2 className={classes.Title}>{Title} ({Year})</h2> */}
+        <Paper elevation={3} className={classes.root}>
             <MovieHeading data={data} />
-        </div>
+            <div className={classes.container}>
+                <img 
+                  src={Poster} 
+                  alt={imdbID}
+                  className={classes.Poster} />
+                <div className={classes.descContainer}>
+                    <p>{Plot}</p>
+                    <p>Director: {Director}</p>
+                    <p>Writers: {Writer}</p>
+                    <p>Actors: {Actors}</p>
+                </div>
+            </div>
+        </Paper>
     )
 }

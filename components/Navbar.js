@@ -202,20 +202,20 @@ function Navbar() {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography className={classes.title} variant="h6" noWrap>
             <Link
               href="/" 
             >
               <a>
-                Material-UI
+                IMDb
               </a>
             </Link>
           </Typography>

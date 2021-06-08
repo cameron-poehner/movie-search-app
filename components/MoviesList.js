@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { connect } from 'react-redux'
 import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles'
+import { Paper } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'left',
         listStyle: 'none',
         height: '100vh',
+        marginBottom: '4rem'
     },
     item: {
         display: 'flex',
@@ -56,7 +58,7 @@ export default function MoviesList({ Search }) {
     console.log('data', Search)
     return (
 
-            <ul className={classes.root}>
+            <Paper elevation={3} className={classes.root}>
                 {Search.map(movie => {
                   const { Poster, Title, Year, imdbID } = movie;
                   return (
@@ -65,7 +67,7 @@ export default function MoviesList({ Search }) {
                       className={classes.item}>
                       <Link 
                         href="/movies/[id]"
-                        as={`/movies/${imdbID}`}
+                        as={`/movies/${Title}`}
                         >
                       <a
                     >
@@ -78,7 +80,7 @@ export default function MoviesList({ Search }) {
                       </Link>
                        <Link 
                         href="/movies/[id]"
-                        as={`/movies/${imdbID}`}
+                        as={`/movies/${Title}`}
                         >
                           <a className={classes.Title}>
                            {Title}
@@ -89,7 +91,7 @@ export default function MoviesList({ Search }) {
                         </p>
                     </li>
                 )})}        
-            </ul>
+            </Paper>
 
     
     )

@@ -1,5 +1,6 @@
 import Header from './Header';
 import Home from '../pages/index';
+import Footer from './Footer'
 
 
 export default function Page({ children }) {
@@ -7,6 +8,7 @@ export default function Page({ children }) {
         <div>
             <Header />
             { children }
+            <Footer />
         </div>
     )
 }
