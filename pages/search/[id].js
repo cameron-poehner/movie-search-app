@@ -1,7 +1,7 @@
 import MoviesList from '../../components/MoviesList'
 import { makeStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
-
+import Breadcrumb from  '../../components/Breadcrumbs'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -50,6 +50,7 @@ export default function MoviesListPage({ data, query }) {
           <Head>
             <title>IMDb | Search</title>
           </Head>
+            <Breadcrumb query={query} />
             <h2 className={classes.Title}>Results for '{id}'</h2>
             <MoviesList Search={Search} data={data} query={query} />
         </div>

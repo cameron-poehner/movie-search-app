@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Paper } from '@material-ui/core';
 import ErrorMessage from './ErrorMessage';
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         margin: '0',
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'left',
         listStyle: 'none',
         height: '100vh',
+        marginBottom: '4rem'
     },
     item: {
         display: 'flex',
@@ -55,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MoviesList({ Search, data }) {
     const classes = useStyles();
-    // const { Error } = data;
+    const { Error } = data;
     console.log('data', Search)
     // if (!(!Error)) return <ErrorMessage Error={Error} data={data} />;
     return (

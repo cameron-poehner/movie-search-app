@@ -1,6 +1,8 @@
 import MovieCard from '../../components/MovieCard'
 import { makeStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
+import SingleMovieBreadCrumb from '../../components/SingleMovieBreadcrumb'
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -34,15 +36,15 @@ export async function getServerSideProps({ query }) {
 
 }
 
-export default function SingleMoviePage({ data }) {
+export default function SingleMoviePage({ data, query }) {
     const classes = useStyles();
     console.log(data)
-    
     return (
         <div className={classes.root}>
         <Head>
             <title>IMDb | {data.Title}</title>
         </Head>
+          <SingleMovieBreadCrumb query={query} data={data} />
               <MovieCard data={data} />
         </div>
     )
