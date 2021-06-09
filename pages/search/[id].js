@@ -1,15 +1,7 @@
 import MoviesList from '../../components/MoviesList'
-import { useSelector, useDispatch } from 'react-redux';
-import {  moviesResults } from '../../store/moviesSlice'
-import { connect } from 'react-redux'
-import { selectResults } from '../../components/Navbar'
-import { Title } from '@material-ui/icons';
-import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
-import ErrorMessage from '../../components/ErrorMessage';
-import { useRouter } from 'next/dist/client/router'
-import Pagination from '../../components/ErrorMessage'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -48,23 +40,18 @@ export async function getServerSideProps({ query }) {
 
 }
 
-export default function MoviesListPage({ data }) {
+export default function MoviesListPage({ data, query }) {
     const classes = useStyles();
-    const { query } = useRouter();
-    const page = parseInt(query.page)
-    console.log(query)
+    const { id } = query;
     const { Search } = data;
-    console.log(Search);
     return (
        
         <div className={classes.root}>
           <Head>
             <title>IMDb | Search</title>
           </Head>
-            <h2 className={classes.Title}>Results for '{query.id}'</h2>
-            <Pagination page={page || 1} />
-            <MoviesList page={page || 1} Search={Search} data={data} query={query} />
-            <Pagination page={page || 1} />
+            <h2 className={classes.Title}>Results for '{id}'</h2>
+            <MoviesList Search={Search} data={data} query={query} />
         </div>
     )
 }

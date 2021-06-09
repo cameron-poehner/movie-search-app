@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'left',
         listStyle: 'none',
         height: '100vh',
-        marginBottom: '4rem'
     },
     item: {
         display: 'flex',
@@ -58,7 +57,7 @@ export default function MoviesList({ Search, data }) {
     const classes = useStyles();
     // const { Error } = data;
     console.log('data', Search)
-    // if (Error) return <ErrorMessage Error={Error} query={query} />;
+    // if (!(!Error)) return <ErrorMessage Error={Error} data={data} />;
     return (
 
             <Paper elevation={3} className={classes.root}>

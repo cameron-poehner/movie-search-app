@@ -25,15 +25,18 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export default function ErrorMessage({ error }) {
+const ErrorMessage = ({ data }) => {
     const classes = useStyles();
-    
+    const { Error } = data;
+    if (!Error) return null;
     return (
         <div className={classes.root}>
-            <h2 className={classes.error}><strong>{error}</strong></h2>
+            <h2 className={classes.error}><strong>{Error}</strong></h2>
             <p className={classes.desc}>Uh Oh! I bet you feel silly!</p>
             <p className={classes.results}>We couldn't find any results for 'undefined',
             maybe it's time to try again</p>
         </div>
     )
 }
+
+export default ErrorMessage
