@@ -2,12 +2,10 @@
   "name": "movie-search-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://cameron-poehner.github.io/movie-search-app",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && rm -rf docs && mv build doc",
-    "start": "next start",
-    "deploy": "gh-pages -b main -d build"
+    "build": "next build && next export",
+    "start": "next start"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
