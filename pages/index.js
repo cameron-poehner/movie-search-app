@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function Home() {
+export default function Home({ query }) {
   const classes = useStyles();
   return (
     <div className={classes.root}>

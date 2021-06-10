@@ -89,10 +89,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Navbar() {
   const classes = useStyles();
-  const search = useSelector(selectQuery);
+  const [search, setSearch] = useState('');
   const router = useRouter();
-  const dispatch = useDispatch();
-  // const [movies, setMovies] = useState([]);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -102,20 +100,20 @@ function Navbar() {
   
 
 
-  const searchMovies = async (e) => {
-    e.preventDefault();
+  // const searchMovies = async (e) => {
+  //   e.preventDefault();
 
 
-    const url = `http://www.omdbapi.com/?s=${search}&apikey=65137754`;
-    try {
-        const res = await fetch(url);
-        const data = await res.json();
-        dispatch(moviesResults(data));
-        router.push(`/search/${search}`);
-    } catch(err) { 
-        console.error(err);
-    }  
-  }
+  //   const url = `http://www.omdbapi.com/?s=${search}&apikey=65137754`;
+  //   try {
+  //       const res = await fetch(url);
+  //       const data = await res.json();
+  //       dispatch(moviesResults(data));
+  //       router.push(`/search/${search}`);
+  //   } catch(err) { 
+  //       console.error(err);
+  //   }  
+  // }
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
@@ -220,7 +218,10 @@ function Navbar() {
             </Link>
           </Typography>
           <div className={classes.search}>
-            <form onSubmit={searchMovies}>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              router.push(`/search/${search}`);
+            }}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -232,7 +233,7 @@ function Navbar() {
               }}
               inputProps={{ 'aria-label': 'search' }}
               value={search || ''}
-              onChange={(e) => dispatch(userQuery(e.target.value))}
+              onChange={(e) => setSearch(e.target.value)}
             />
             </form>
           </div>
@@ -279,7 +280,6 @@ function Navbar() {
   );
 }
 
-export const selectResults = state => state.results.value
 
 
 const mapStateToProps = (state) => ({

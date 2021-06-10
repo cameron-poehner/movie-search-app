@@ -40,7 +40,7 @@ Router.events.on('routeChangeError', () => NProgress.done());
 function MyApp({ Component, pageProps, reduxStore }) {
   return (
     <Provider store={reduxStore}>
-      <Page>
+      <Page {...pageProps}>
         <Component {...pageProps} />
       </Page>
     </Provider>
