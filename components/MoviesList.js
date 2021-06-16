@@ -1,6 +1,4 @@
-import { moviesResults } from '../store/moviesSlice'
-import { useSelector, useDispatch } from 'react-redux';
-import { connect } from 'react-redux'
+
 import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles'
 import { Paper } from '@material-ui/core';

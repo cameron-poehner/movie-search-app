@@ -10,5 +10,5 @@ export default function Page({ children }) {
             { children }
             <Footer />
         </div>
-    )
+    )d
 }
