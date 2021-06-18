@@ -1,4 +1,4 @@
-import MovieCard from '../../components/MovieCard'
+import MovieCard from '../../components/SingleMovie'
 import { makeStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
 import SingleMovieBreadCrumb from '../../components/SingleMovieBreadcrumb'
@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-    }
+    },
 }))
 
 export async function getServerSideProps({ query }) {
     const { id } = query;
-    const url = `http://www.omdbapi.com/?t=${id}&apikey=65137754`
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=50ee20a8e3da5025fd2012e0cc6f35ad&language=en-US&append_to_response=details,credits`;
      const res = await fetch(url);
      const data = await res.json();
      return {

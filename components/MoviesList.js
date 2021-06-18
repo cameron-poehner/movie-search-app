@@ -3,43 +3,44 @@ import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles'
 import { Paper } from '@material-ui/core';
 import ErrorMessage from './ErrorMessage';
+import MovieCard from './MovieCard'
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
         margin: '0',
         padding: '0',
-        background: 'black',
         color: 'white',
         display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        width: '60vw',
+        justifyContent: 'start',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        width: '70vw',
         textAlign: 'left',
         listStyle: 'none',
-        height: '100vh',
-        marginBottom: '4rem'
+        height: 'auto',
+        margin: '4rem'
     },
     item: {
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        width: '100%',
-        height: '100px'
+        width: '10vw',
+        height: '35vh',
+        margin: '1rem',
+        background: '#1c1c1c'
     },
-    Poster: {
-        height: '100%',
-        width: '50px',
-        marginRight: '1rem'
+    poster: {
+        height: '200px',
+        width: '150px',
+        borderRadius: '5px'
     },
     Title: {
         fontFamily: 'Roboto',
         fontWeight: '200',
-        fontSize: '18px',
-        marginLeft: '2rem',
-        marginRight: '2rem',
-        letterSpacing: '2px',
+        fontSize: '1rem',
+        color: 'white',
         '&:hover': {
             color: 'blue',
 
@@ -48,52 +49,23 @@ const useStyles = makeStyles((theme) => ({
     Year: {
         fontFamily: 'Roboto',
         textAlign: 'right',
-        letterSpacing: '5px'
     },
 
 }))
 
-export default function MoviesList({ Search, data }) {
+export default function MoviesList({ data, results }) {
     const classes = useStyles();
     const { Error } = data;
-    console.log('data', Search)
+    console.log('data', results)
     // if (!(!Error)) return <ErrorMessage Error={Error} data={data} />;
     return (
 
-            <Paper elevation={3} className={classes.root}>
-                {Search.map(movie => {
-                  const { Poster, Title, Year, imdbID } = movie;
+        <div elevation={3} className={classes.root}>
+        {results.map(movie => {
                   return (
-                    <li 
-                      key={imdbID}
-                      className={classes.item}>
-                      <Link 
-                        href="/movies/[id]"
-                        as={`/movies/${Title}`}
-                        >
-                      <a
-                    >
-                      <img 
-                        src={Poster} 
-                        alt={imdbID} 
-                        className={classes.Poster}
-                         />  
-                      </a>
-                      </Link>
-                       <Link 
-                        href="/movies/[id]"
-                        as={`/movies/${Title}`}
-                        >
-                          <a className={classes.Title}>
-                           {Title}
-                          </a>
-                      </Link>
-                      <p className={classes.Year}>         
-                        ({ Year })
-                        </p>
-                    </li>
+                   <MovieCard movie={movie} />
                 )})}        
-            </Paper>
+            </div>
 
     
     )

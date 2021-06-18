@@ -6,7 +6,7 @@ import Breadcrumb from  '../../components/Breadcrumbs'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        background: '#1c1c1c',
+        background: '#272C34',
         margin: '0',
         padding: '0',
         color: 'white',
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 export async function getServerSideProps({ query }) {
     const { id } = query;
     console.log(query);
-    const url = `http://www.omdbapi.com/?s=${id}&apikey=65137754`
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=50ee20a8e3da5025fd2012e0cc6f35ad&language=en-US&query=${id}&page=1&include_adult=false`
      const res = await fetch(url);
      const data = await res.json();
      return {
@@ -43,7 +43,8 @@ export async function getServerSideProps({ query }) {
 export default function MoviesListPage({ data, query }) {
     const classes = useStyles();
     const { id } = query;
-    const { Search } = data;
+    const { results } = data;
+    console.log(data)
     return (
        
         <div className={classes.root}>
@@ -52,7 +53,7 @@ export default function MoviesListPage({ data, query }) {
           </Head>
             <Breadcrumb query={query} />
             <h2 className={classes.Title}>Results for '{id}'</h2>
-            <MoviesList Search={Search} data={data} query={query} />
+            <MoviesList results={results} data={data} query={query} />
         </div>
     )
 }

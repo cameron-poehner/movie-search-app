@@ -27,8 +27,21 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function Home({ query }) {
+export async function getServerSideProps() {
+  const url = `https://api.themoviedb.org/3/movie/popular?api_key=50ee20a8e3da5025fd2012e0cc6f35ad&language=en-US&page=1&region=5016`;
+  const res = await fetch(url);
+  const data = await res.json();
+  return {
+    props: {
+      data
+    }
+  }
+
+}
+
+ export default function Home({ data }) {
   const classes = useStyles();
+  console.log(data)
   return (
     <div className={classes.root}>
       <Head>
