@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
+  root: {
+    background: '#00000d',
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -95,33 +98,8 @@ function Navbar() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl); 
   
-
-
-  // const searchMovies = async (e) => {
-  //   e.preventDefault();
-
-
-  //   const url = `http://www.omdbapi.com/?s=${search}&apikey=65137754`;
-  //   try {
-  //       const res = await fetch(url);
-  //       const data = await res.json();
-  //       dispatch(moviesResults(data));
-  //       router.push(`/search/${search}`);
-  //   } catch(err) { 
-  //       console.error(err);
-  //   }  
-  // }
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(e);
-  // }
- 
-  
-
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -198,7 +176,7 @@ function Navbar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar className={classes.root} position="static">
         <Toolbar>
           {/* <IconButton
             edge="start"

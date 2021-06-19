@@ -2,33 +2,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { makeStyles } from '@material-ui/core/styles'
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    background: '#1c1c1c',
-    color: 'white',
-    width: '100vw',
-    height: '100vh',
-    margin: '0',
-    padding: '0',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  main: {
-    margin: '0',
-    padding: '0',
-  },
-  title: {
-    margin: '0',
-    padding: '0',
-    fontFamily: 'Noto Sans JP'
-  }
-}))
+import NowPlaying from '../components/NowPlaying';
 
 export async function getServerSideProps() {
-  const url = `https://api.themoviedb.org/3/movie/popular?api_key=50ee20a8e3da5025fd2012e0cc6f35ad&language=en-US&page=1&region=5016`;
+  const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=50ee20a8e3da5025fd2012e0cc6f35ad&language=en-US&page=1`;
   const res = await fetch(url);
   const data = await res.json();
   return {
@@ -54,12 +31,32 @@ export async function getServerSideProps() {
         <h1 className={classes.title}>
           Welcome to IMDb!
         </h1>
-
-     
-
-       
+        <section>
+          <NowPlaying data={data} />
+        </section>
       </main>
       </div>
 
   )
 }
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    background: '#272C34',
+    color: 'white',
+    minHeight: '100vh',
+    margin: '0',
+    padding: '0',
+  },
+  main: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    width: '100vw',
+  },
+  title: {
+    marginTop: '2rem',
+    fontFamily: 'Noto Sans JP'
+  }
+}))

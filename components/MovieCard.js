@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Link from 'next/link'
 
 const useStyles = makeStyles({
   root: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles({
     padding: 0,
     boxSizing: 'border-box',
     color: 'white',
-    background: '#1c1c1c',
+    background: '#4f555e',
   },
   media: {
     width: '100%',
@@ -30,12 +31,19 @@ const useStyles = makeStyles({
   },
   buttons: {
       position: 'sticky',
+      color: 'white'
+  },
+  button: {
+    color: 'white',
+    '&:hover': {
+      color: '#002171',
+    }
   }
 });
 
 export default function MovieCard({ movie }) {
   const classes = useStyles();
-  const { poster_path, title} = movie;
+  const { poster_path, title, id } = movie;
   return (
     <Card className={classes.root} raised={true}>
       <CardActionArea>
@@ -55,12 +63,19 @@ export default function MovieCard({ movie }) {
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.buttons}>
-        <Button size="small" color="primary">
+        <Button size="small" className={classes.button}>
           Share
         </Button>
-        <Button size="small" color="primary">
+        <Link href={{
+          pathname: `/movies/[id]`,
+          query: {
+            id: id
+          },
+        }}>
+        <Button size="small" className={classes.button}>
           Learn More
         </Button>
+        </Link>
       </CardActions>
     </Card>
   );
