@@ -3,29 +3,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
 import Breadcrumb from  '../../components/Breadcrumbs'
 
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        background: '#272C34',
-        margin: '0',
-        padding: '0',
-        color: 'white',
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100vw',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        height: 'auto',
-    },
-    Title: {
-        fontFamily: 'Roboto',
-        fontWeight: '200',
-        fontSize: '2rem',
-        textTransform: 'uppercase'
-    },
-}))
-
-
 export async function getServerSideProps({ query }) {
     const { id } = query;
     console.log(query);
@@ -44,6 +21,12 @@ export default function MoviesListPage({ data, query }) {
     const classes = useStyles();
     const { id } = query;
     const { results } = data;
+
+    function truncate(string) {
+        let replace = string.slice(0, 25).concat('...');
+        return string.length <= 20 ? string : replace;
+      }
+
     console.log(data)
     return (
        
@@ -52,9 +35,29 @@ export default function MoviesListPage({ data, query }) {
             <title>IMDb | Search</title>
           </Head>
             <Breadcrumb query={query} />
-            <h2 className={classes.Title}>Results for '{id}'</h2>
+            <h2 className={classes.Title}>Results for '{truncate(id)}'</h2>
             <MoviesList results={results} data={data} query={query} />
         </div>
     )
 }
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        background: '#272C34',
+        margin: '0',
+        padding: '0',
+        color: 'white',
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100vw',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 'auto',
+    },
+    Title: {
+        fontFamily: 'Roboto',
+        fontWeight: '200',
+        fontSize: '2rem',
+        textTransform: 'uppercase'
+    },
+}))

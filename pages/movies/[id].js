@@ -1,4 +1,4 @@
-import MovieCard from '../../components/SingleMovie'
+import SingleMovie from '../../components/SingleMovie'
 import { makeStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
 import SingleMovieBreadCrumb from '../../components/SingleMovieBreadcrumb'
@@ -45,7 +45,7 @@ export default function SingleMoviePage({ data, query }) {
             <title>IMDb | {data.Title}</title>
         </Head>
           <SingleMovieBreadCrumb query={query} data={data} />
-              <MovieCard data={data} />
+              <SingleMovie data={data} />
         </div>
     )
 }

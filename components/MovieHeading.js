@@ -1,34 +1,86 @@
 import { makeStyles, Paper } from "@material-ui/core";
-import { CallMissedSharp } from "@material-ui/icons";
 import StarIcon from '@material-ui/icons/Star'
+
+export default function MovieHeading({ data }) {
+    const classes = useStyles();
+    console.log(data)
+
+    const { title, release_date, runtime, genres, vote_average, vote_count } = data;
+
+    const yearFormatter = (fullDate) => {
+            return fullDate.slice(0, 4);
+    }
+
+    return (
+        <Paper elevation={3} className={classes.root}>
+          <div className={classes.header}>
+            <span className={classes.heading}>
+            <h2 className={classes.Title}>{title}</h2>
+            <p className={classes.year}>({yearFormatter(release_date)})</p>
+            </span>
+            <div className={classes.description}>
+              <span className={classes.runtime}>{runtime} minutes</span> | 
+              <span className={classes.descItem}>{genres.map(genre => <span>{genre.name}</span>)}</span> | 
+              <span className={classes.descItem}>{release_date}</span>
+            </div>
+          </div>  
+            <div className={classes.rating}>
+              <StarIcon className={classes.icon}/>
+              <span>{vote_average} / 10</span>
+              <p>({vote_count}) </p>
+            </div>
+         
+        </Paper>
+    )
+}
+
 const useStyles = makeStyles((theme) => ({
     root: {
         background: '#1c1c1c',
         borderRadius: '5px',
-        width: '100%'
+        width: '100%',
+        height: 'auto',
+        minHeight: '20vh',
+        display: 'grid',
+        gridTemplateColumns: '3fr 1fr',
+        alignItems: 'center'
+    },
+    header: {
+        color: 'white',
+        width: '100%',
+        height: 'auto',
+        paddingLeft: '2rem',
+        lineHeight: '.5rem',
+        marginBottom: '2rem',
+    },
+    heading: {
+        display: 'flex',
+        alignItems: 'start',
+        height: 'auto',
+        BoxSizing: 'border-box',
     },
     Title: {
         fontFamily: 'Roboto',
-        fontWeight: '200',
-        letterSpacing: '2px',
+        fontWeight: '400',
+        fontSize: '2rem',
+        letterSpacing: '4px',
         color: 'white',
-        paddingLeft: '1rem',
-        paddingRight: '2rem',
-        marginRight: '1rem',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        BoxSizing: 'border-box',
+        overflowWrap: 'break-word'
+    },
+    year: {
+        letterSpacing: '4px',
+        fontSize: '1.5rem',
+        fontWeight: '200',
+        paddingLeft: '1rem'
     },
     description: {
         color: 'white',
-        paddingLeft: '1rem',
-        paddingRight: '1rem',
-        marginTop: '1rem',
-        marginBottom: '1rem',
         BoxSizing: 'border-box',
+     
     },
-    rating: {
-        paddingRight: '10px',
+    runtime: {
+        letterSpacing: '4px',
+        paddingRight: '10px'
     },
     descItem: {
         paddingLeft: '10px',
@@ -37,28 +89,11 @@ const useStyles = makeStyles((theme) => ({
 
     },
     icon: {
-        color: 'yellow'
+        color: '#F4C518',
+        fontSize: '2rem'
+    },
+    rating: {
+        color: 'white',
+        justifySelf: 'end'
     }
 }))
-
-export default function MovieHeading({ data }) {
-    const classes = useStyles();
-    console.log(data)
-    const { Title, Year, Rated, Runtime, Genre, imdbRating, Released, imdbVotes } = data;
-    return (
-        <Paper elevation={3} className={classes.root}>
-            <h2 className={classes.Title}>{Title} ({Year}) | &nbsp;
-           
-            <span><StarIcon
-              className={classes.icon}
-             />&nbsp; {imdbRating} / 10 ({imdbVotes})</span> </h2>
-           
-            <div className={classes.description}>
-              <span className={classes.rating}>{Rated}</span> | 
-              <span className={classes.descItem}>{Runtime}</span> | 
-              <span className={classes.descItem}>{Genre}</span> | 
-              <span className={classes.descItem}>{Released}</span>
-            </div>
-        </Paper>
-    )
-}
