@@ -18,52 +18,11 @@ export default function SingleMovie({ data }) {
                 <div className={classes.descContainer}>
                     <p>{Plot}</p>
                     <p className={classes.director}>Director: {crew.filter(member => member.job === "Director").map(job => <span>{job.name}</span>)}</p>
-                    <p>Writers: {crew.filter(member => member.job === "Screenplay").map(job => <span>{job.name},&nbsp;</span>)}</p>
-                    <p>Stars: {shortCast.map((member, index) => <span key={index}>{member.name},&nbsp;</span>)}</p>
+                    <p>Writers: {crew.filter(member => member.job === "Screenplay").map(job => <span>{job.name}</span>)}</p>
+                    <p>Actors: {shortCast.map((member, index) => <span key={index}>{member.name}</span>)}</p>
                 </div>
             </div>
         </Paper>
     )
 }
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        margin: '0',
-        padding: '0',
-        background: 'black',
-        color: 'white',
-        display: 'flex',
-        flexDirection: 'column',
-        width: '70vw',
-        height: 'auto',
-        justifyContent: 'space-evenly',
-        alignItems: 'flex-start'
-    },
-    container: {
-        height: 'auto',
-        width: '70vw',
-        boxSizing: 'border-box',
-        display: 'flex',
-        justifyContent: 'flex-start',
-        alignItems: 'center'
-    },
-    Poster: {
-       boxSizing: 'border-box',
-       height: '400px',
-       width: '260px'
-   },
-    descContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        width: '70%',
-        height: '100%',
-        justifyContent: 'start',
-        alignItems: 'flex-start',
-        padding: '4rem',
-        boxSizing: 'border-box',
-        color: 'white'
-    },
-    director: {
-        color: 'white'
-    }
-}))
