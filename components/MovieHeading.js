@@ -11,6 +11,11 @@ export default function MovieHeading({ data }) {
             return fullDate.slice(0, 4);
     }
 
+    const date = new Date(Date.parse(release_date));
+
+
+    console.log(date)
+
     return (
         <Paper elevation={3} className={classes.root}>
           <div className={classes.header}>
@@ -21,13 +26,15 @@ export default function MovieHeading({ data }) {
             <div className={classes.description}>
               <span className={classes.runtime}>{runtime} minutes</span> | 
               <span className={classes.descItem}>{genres.map(genre => <span>{genre.name}</span>)}</span> | 
-              <span className={classes.descItem}>{release_date}</span>
+              <span className={classes.descItem}>{new Intl.DateTimeFormat('en-US').format(date)}</span>
             </div>
           </div>  
             <div className={classes.rating}>
               <StarIcon className={classes.icon}/>
+              <div>
               <span>{vote_average} / 10</span>
-              <p>({vote_count}) </p>
+              <p className={classes.voteCount}>{new Intl.NumberFormat().format(vote_count)}</p>
+              </div>
             </div>
          
         </Paper>
@@ -55,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     },
     heading: {
         display: 'flex',
-        alignItems: 'start',
+        alignItems: 'center',
         height: 'auto',
         BoxSizing: 'border-box',
     },
@@ -94,6 +101,11 @@ const useStyles = makeStyles((theme) => ({
     },
     rating: {
         color: 'white',
-        justifySelf: 'end'
-    }
+        justifySelf: 'center',
+        display: 'flex',
+        alignItems: 'start',
+    },
+    voteCount: {
+
+    },
 }))
