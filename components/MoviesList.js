@@ -1,4 +1,4 @@
-
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles'
 import MovieCard from './MovieCard'
@@ -7,10 +7,19 @@ import { Paper } from '@material-ui/core';
 export default function MoviesList({ results }) {
     const classes = useStyles();
     console.log('data', results)
+    const [sorted, setSorted] = useState([...results])
+    console.log('sorted', sorted)
+
+    // useEffect(() => {
+    //     let sort = [...sorted];
+    //     setSorted(sort.reverse());
+    // }, [sorted])
+
     return (
 
         <Paper elevation={3} className={classes.root}>
-        {results.map(movie => {
+            <button onClick={() => setSorted(sorted.reverse())}>Sort</button>
+        {sorted.map(movie => {
                   return (
                    <MovieCard movie={movie} />
                 )})}        

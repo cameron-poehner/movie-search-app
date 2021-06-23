@@ -23,7 +23,7 @@ export default function MoviesListPage({ data, query }) {
     const { results } = data;
 
     function truncate(string) {
-        let replace = string.slice(0, 25).concat('...');
+        let replace = string.slice(0, 20).concat('...');
         return string.length <= 20 ? string : replace;
       }
 
