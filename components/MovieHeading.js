@@ -1,5 +1,6 @@
 import { makeStyles, Paper } from "@material-ui/core";
-import StarIcon from '@material-ui/icons/Star'
+import StarIcon from '@material-ui/icons/Star';
+import { commaList } from '../lib/helper';
 
 export default function MovieHeading({ data }) {
     const classes = useStyles();
@@ -12,33 +13,41 @@ export default function MovieHeading({ data }) {
     }
 
     const date = new Date(Date.parse(release_date));
-
-
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
     console.log(date)
+
+
+   
+    const runTime = (param) => {
+        let hour = (param / 60);
+        let rhours = Math.floor(hour);
+        let minutes = (hour - rhours) * 60;
+        let rminutes = Math.round(minutes);
+        return `${rhours}h ${rminutes}min`;
+    }
+ 
+    console.log(genres)
 
     return (
         <Paper elevation={3} className={classes.root}>
           <div className={classes.header}>
-            <span className={classes.heading}>
-            <h2 className={classes.Title}>{title}</h2>
-            <p className={classes.year}>({yearFormatter(release_date)})</p>
-            </span>
+            <h2 className={classes.heading}><strong className={classes.Title}>{title}</strong>
+            ({yearFormatter(release_date)})</h2>
             <div className={classes.description}>
-              <span className={classes.runtime}>{runtime} minutes</span> | 
-              <span className={classes.descItem}>{genres.map(genre => <span>{genre.name}</span>)}</span> | 
-              <span className={classes.descItem}>{new Intl.DateTimeFormat('en-US').format(date)}</span>
+              <span className={classes.runtime}>{runTime(runtime)}</span> | 
+              <span className={classes.descItem}>{commaList(genres)}</span> | 
+              <span className={classes.descItem}>{new Intl.DateTimeFormat('en-US', options).format(date)}</span>
             </div>
           </div>  
             <div className={classes.rating}>
               <StarIcon className={classes.icon}/>
-              <div>
-              <span>{vote_average} / 10</span>
+              <div className={classes.container}>
+              <span><strong className={classes.voteAverage}>{vote_average}</strong> / 10</span>
               <p className={classes.voteCount}>{new Intl.NumberFormat().format(vote_count)}</p>
               </div>
             </div>
          
-        </Paper>
-    )
+        </Paper>)
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -49,63 +58,71 @@ const useStyles = makeStyles((theme) => ({
         height: 'auto',
         minHeight: '20vh',
         display: 'grid',
-        gridTemplateColumns: '3fr 1fr',
-        alignItems: 'center'
+        gridTemplateColumns: '4fr 1fr',
+        alignItems: 'center',
+        overflowWrap: 'break-word',
+        margin: '0',
+        padding: '0',
     },
     header: {
         color: 'white',
         width: '100%',
-        height: 'auto',
+        height: '100%',
         paddingLeft: '2rem',
-        lineHeight: '.5rem',
-        marginBottom: '2rem',
+        paddingBottom: '1rem'
     },
     heading: {
-        display: 'flex',
-        alignItems: 'center',
-        height: 'auto',
-        BoxSizing: 'border-box',
+        fontWeight: '200',
+        letterSpacing: '4px'
     },
     Title: {
         fontFamily: 'Roboto',
-        fontWeight: '400',
         fontSize: '2rem',
+        fontWeight: '400',
         letterSpacing: '4px',
+        overflowWrap: 'break-word',
         color: 'white',
-        overflowWrap: 'break-word'
-    },
-    year: {
-        letterSpacing: '4px',
-        fontSize: '1.5rem',
-        fontWeight: '200',
-        paddingLeft: '1rem'
+        marginRight: '1rem'
     },
     description: {
         color: 'white',
         BoxSizing: 'border-box',
-     
+        display: 'flex',
+        alignItems: 'center'
     },
     runtime: {
         letterSpacing: '4px',
-        paddingRight: '10px'
+        paddingRight: '10px',
+        fontFamily: 'Roboto',
+        fontWeight: '200'
     },
     descItem: {
         paddingLeft: '10px',
         paddingRight: '10px',
-        letterSpacing: '4px'
-
+        letterSpacing: '4px',
+        fontFamily: 'Roboto',
+        fontWeight: '200'
     },
     icon: {
         color: '#F4C518',
-        fontSize: '2rem'
+        fontSize: '3rem'
     },
     rating: {
         color: 'white',
         justifySelf: 'center',
         display: 'flex',
-        alignItems: 'start',
+        alignItems: 'center',
+    },
+    container: {
+        fontWeight: '200',
+        fontSize: '.8rem'
+    },
+    voteAverage: {
+        fontSize: '2rem',
+        fontWeight: '400'
     },
     voteCount: {
-
+        padding: '0',
+        margin: '0',
     },
 }))

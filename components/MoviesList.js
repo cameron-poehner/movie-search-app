@@ -1,16 +1,27 @@
-import { makeStyles } from '@material-ui/core/styles'
-import MovieCard from './MovieCard'
+import { makeStyles } from '@material-ui/core/styles';
+import MovieCard from './MovieCard';
 import { Paper } from '@material-ui/core';
+import { useState, useEffect } from 'react';
 
 export default function MoviesList({ results }) {
     const classes = useStyles();
+    const [sorted, setSorted] = useState(results);
+
+    console.log('movie', results)
+
+    const clickSort = () => {
+        let sort = [...sorted];
+        let reversed = sort.reverse();
+        setSorted(reversed);
+    }
 
     return (
 
         <Paper elevation={3} className={classes.root}>
-        {results.map(movie => {
+        <button onClick={clickSort}>Sort?</button>
+        {sorted.map(movie => {
                   return (
-                   <MovieCard movie={movie} />
+                   <MovieCard key={movie.id} movie={movie} />
                 )})}        
         </Paper>
     
