@@ -1,35 +1,40 @@
 import { Button, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MovieCard from '../components/MovieCard'
-import { useEffect, useState } from 'react';
+import SimpleImageSlider from 'react-simple-image-slider';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function NowPlaying({ data }) {
     const classes = useStyles();
+    const router = useRouter();
     const { results } = data;
-    const [current, setCurrent] = useState(0);
     
+    const images = results.map(movie => 
+        ({ url: `https://image.tmdb.org/t/p/w185_and_h278_bestv2${movie.poster_path}`,
+           id: movie.id}));
+
+    console.log('images', images);
+    console.log('router', router);
     console.log('results', results);
-    console.log('current', current)
-    // 1. Display one Item at a Time
-      // Accomplished by setting state - current - to initail value of results array index[0];
-    // 2. Create Next Button to iterate through movie cards 👍
-    useEffect(() => {
-        setCurrent(current + 1);
-    }, [])
-    // 3. Create Prev Button to reverse through cards
-    // 4. Allow cycling through the end of the array back to the beginning and vice versa
-    // 5. Setup Timer for Slider
-    // 6. Improve design - Images Only? Title Over the Bottom 1/3 of image?
+
+    console.log('id', images[0].id);
+
     return(
         <Paper elevation={3} className={classes.root}>
           <h2 className={classes.title}>
             NOW PLAYING
           </h2>
             <div className={classes.nowPlaying}>
-            <Button className={classes.button}>prev</Button>
-            {results.map(movie => <MovieCard key={movie.id} movie={movie} />)}
-            <Button 
-              className={classes.button}>Next</Button>
+            <SimpleImageSlider
+            width={400}
+            height={600}
+            images={images}
+            showNavs={true}
+            onClick={() => router.push(`/movies/${images[0].id}`)}
+            navStyle={2}
+            navMargin={10}
+            slideDuration={0.5} />
             </div>
         </Paper>
     )
@@ -43,6 +48,8 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         flexWrap: 'wrap',
         width: '90vw',
+        minHeight: '100vh',
+        height: 'auto',
         background: '#00000d',
         fontFamily: 'Noto Sans JP',
         fontSize: '2rem',
@@ -51,11 +58,6 @@ const useStyles = makeStyles((theme) => ({
     title: {
         color: 'white',
         textAlign: 'center'
-    },
-    nowPlaying: {
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
     },
     button: {
         color: 'white',

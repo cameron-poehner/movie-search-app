@@ -2,6 +2,8 @@ import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 import MovieHeading from './MovieHeading';
 import { commaList } from '../lib/helper';
+import CastMember from './CastMember';
+import MovieDetails from './MovieDetails'
 
 export default function SingleMovie({ data }) {
     const classes = useStyles();
@@ -33,6 +35,13 @@ export default function SingleMovie({ data }) {
                     <p className={classes.director}><span className={classes.span}>Stars:</span> {commaList(shortCast)}</p>
                 </div>
             </div>
+            <section>
+                <h2>Cast</h2>
+            {cast.map(member => <CastMember member={member} />)}
+            </section>
+            <section>
+                <MovieDetails data={data} />
+            </section>
         </Paper>
     )
 }

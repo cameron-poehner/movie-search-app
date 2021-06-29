@@ -9,17 +9,20 @@ export default function MoviesList({ results }) {
 
     console.log('movie', results)
 
-    const clickSort = () => {
-        let sort = [...sorted];
-        let reversed = sort.reverse();
-        setSorted(reversed);
-    }
+
+    // const clickSort = (e) => {
+    //     console.log(e)
+    //     let sort = [...sorted];
+    //     let reversed = sort.reverse();
+    //     results = sorted;
+    //     setSorted(reversed);
+    // }
 
     return (
 
         <Paper elevation={3} className={classes.root}>
-        <button onClick={clickSort}>Sort?</button>
-        {sorted.map(movie => {
+        {/* <button onClick={clickSort}>Sort?</button> */}
+        {results.map(movie => {
                   return (
                    <MovieCard key={movie.id} movie={movie} />
                 )})}        

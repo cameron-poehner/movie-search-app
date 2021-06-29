@@ -198,6 +198,7 @@ function Navbar() {
           <div className={classes.search}>
             <form onSubmit={(e) => {
               e.preventDefault();
+              console.log('search', search);
               router.push(`/search/${search}`);
             }}>
             <div className={classes.searchIcon}>
