@@ -27,16 +27,16 @@ export default function SingleMovie({ data }) {
                   className={classes.Poster} />
                 <div className={classes.descContainer}>
                 <p className={classes.director}><span className={classes.span}>Tagline:</span>{tagline}</p>
-                    <p className={classes.director}><span className={classes.span}>{director.length > 1 ? 'Directors' : 'Director'}:</span> {genreList(director)}</p>
-                    <p className={classes.director}><span className={classes.span}>{writer.length > 1 ? 'Writers' : 'Writer'}:</span> {genreList(writer)}</p>
+                    <p className={classes.director}><span className={classes.span}>{director.length > 1 ? 'Directors' : 'Director'}:</span> {starsList(director)}</p>
+                    <p className={classes.director}><span className={classes.span}>{writer.length > 1 ? 'Writers' : 'Writer'}:</span> {starsList(writer)}</p>
                     <p className={classes.director}><span className={classes.span}>Stars:</span> {starsList(shortCast)}</p>
                 </div>
             </div>
             <section className={classes.details}>
-                <h2>Cast</h2>
+                <h2 className={classes.cast}>Cast</h2>
             {cast.map(member => <CastMember member={member} />)}
             </section>
-            <section>
+            <section className={classes.movieDetails}>
                 <MovieDetails data={data} />
             </section>
         </Paper>
@@ -45,7 +45,7 @@ export default function SingleMovie({ data }) {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        margin: '0',
+        margin: '5rem 0',
         padding: '0',
         background: 'black',
         color: 'white',
@@ -84,7 +84,15 @@ const useStyles = makeStyles((theme) => ({
     },
     details: {
         background: '#1c1c1c',
-        width: '100%'
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'left',
+        padding: '2rem 0'
+    },
+    cast: {
+        textAlign: 'left',
     },
     director: {
         color: 'white',
@@ -101,5 +109,11 @@ const useStyles = makeStyles((theme) => ({
         letterSpacing: '2px',
         fontFamily: 'Roboto',
         fontWeight: '400',
+    },
+    movieDetails: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        alignItems: 'center',
     },
 })) 

@@ -99,7 +99,8 @@ const useStyles = makeStyles({
       color: 'white',
       letterSpacing: '1px',
       '&:hover': {
-        color: '#002171',
+        color: '#0d47a1',
+        textDecoration: 'underline'
       },
   },
   buttons: {
@@ -112,7 +113,7 @@ const useStyles = makeStyles({
     textAlign: 'left',
    
     '&:hover': {
-      color: '#002171',
+      color: '#0d47a1',
     }
   },
   star: {
