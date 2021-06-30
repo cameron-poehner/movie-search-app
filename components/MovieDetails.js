@@ -3,7 +3,6 @@ import { commaList } from '../lib/helper';
 
 export default function MovieDetails({ data }) {
     const { overview, genres, budget, revenue } = data;
-    console.log('Movie Data', data);
     return (
         <div>
             <h2>Storyline</h2>

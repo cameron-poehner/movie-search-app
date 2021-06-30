@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import MovieHeading from './MovieHeading';
 import { commaList } from '../lib/helper';
 import CastMember from './CastMember';
-import MovieDetails from './MovieDetails'
+import MovieDetails from './MovieDetails';
 
 export default function SingleMovie({ data }) {
     const classes = useStyles();
@@ -11,15 +11,12 @@ export default function SingleMovie({ data }) {
     const { crew, cast } = credits;
 
     const director = crew.filter(member => member.job === "Director");
-    
-    console.log('Director', director);
 
     const writer = crew.filter(member => member.job === "Screenplay" 
     || member.job === "Writer" || member.job === "Co-Writer");
 
-    console.log('writer', writer)
+    const shortCast = cast.slice(0, 5);
 
-    const shortCast = cast.slice(0, 5)
     return (
         <Paper elevation={3} className={classes.root}>
             <MovieHeading data={data} />
@@ -35,7 +32,7 @@ export default function SingleMovie({ data }) {
                     <p className={classes.director}><span className={classes.span}>Stars:</span> {commaList(shortCast)}</p>
                 </div>
             </div>
-            <section>
+            <section className={classes.details}>
                 <h2>Cast</h2>
             {cast.map(member => <CastMember member={member} />)}
             </section>
@@ -60,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'flex-start'
     },
     container: {
-        height: 'auto',
         width: '70vw',
         boxSizing: 'border-box',
         display: 'flex',
@@ -86,6 +82,10 @@ const useStyles = makeStyles((theme) => ({
         letterSpacing: '1px',
 
     },
+    details: {
+        background: '#1c1c1c',
+        width: '100%'
+    },
     director: {
         color: 'white',
         display: 'flex',
@@ -93,7 +93,8 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
         fontFamily: 'Roboto',
         letterSpacing: '2px',
-        fontWeight: '200'
+        fontWeight: '200',
+
     },
     span: {
         marginRight: '10px',

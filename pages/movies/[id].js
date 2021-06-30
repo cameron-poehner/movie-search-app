@@ -3,6 +3,32 @@ import { makeStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
 import SingleMovieBreadCrumb from '../../components/SingleMovieBreadcrumb'
 
+export async function getServerSideProps({ query }) {
+    const { id } = query;
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=50ee20a8e3da5025fd2012e0cc6f35ad&language=en-US&append_to_response=details,credits`;
+     const res = await fetch(url);
+     const data = await res.json();
+     return {
+         props: {
+             data 
+         }
+     }
+
+}
+
+export default function SingleMoviePage({ data, query }) {
+    const classes = useStyles();
+    return (
+        <div className={classes.root}>
+        <Head>
+            <title>IMDb | {data.Title}</title>
+        </Head>
+          <SingleMovieBreadCrumb query={query} data={data} />
+              <SingleMovie data={data} />
+        </div>
+    )
+}
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -23,30 +49,3 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     },
 }))
-
-export async function getServerSideProps({ query }) {
-    const { id } = query;
-    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=50ee20a8e3da5025fd2012e0cc6f35ad&language=en-US&append_to_response=details,credits`;
-     const res = await fetch(url);
-     const data = await res.json();
-     return {
-         props: {
-             data 
-         }
-     }
-
-}
-
-export default function SingleMoviePage({ data, query }) {
-    const classes = useStyles();
-    console.log(data)
-    return (
-        <div className={classes.root}>
-        <Head>
-            <title>IMDb | {data.Title}</title>
-        </Head>
-          <SingleMovieBreadCrumb query={query} data={data} />
-              <SingleMovie data={data} />
-        </div>
-    )
-}

@@ -4,7 +4,6 @@ import { commaList } from '../lib/helper';
 
 export default function MovieHeading({ data }) {
     const classes = useStyles();
-    console.log(data)
 
     const { title, release_date, runtime, genres, vote_average, vote_count } = data;
 
@@ -14,9 +13,6 @@ export default function MovieHeading({ data }) {
 
     const date = new Date(Date.parse(release_date));
     const options = { day: 'numeric', month: 'long', year: 'numeric' };
-    console.log(date)
-
-
    
     const runTime = (param) => {
         let hour = (param / 60);
@@ -26,8 +22,6 @@ export default function MovieHeading({ data }) {
         return `${rhours}h ${rminutes}min`;
     }
  
-    console.log(genres)
-
     return (
         <Paper elevation={3} className={classes.root}>
           <div className={classes.header}>
