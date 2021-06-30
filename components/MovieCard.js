@@ -24,12 +24,7 @@ export default function MovieCard({ movie }) {
   return (
     <Card className={classes.root} raised={true}>
       <CardActionArea>
-      <Link href={{
-          pathname: `/movies/[id]`,
-          query: {
-            id: movie.id
-          },
-        }}>
+      <Link href={`/movies/${id}`}>
         <CardMedia
           className={classes.media}
           image={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${poster_path}`}
@@ -52,12 +47,7 @@ export default function MovieCard({ movie }) {
        
         
       </CardActions>
-      <Link href={{
-          pathname: `/movies/[id]`,
-          query: {
-            id: movie.id
-          },
-        }}>
+      <Link href={`/movies/${id}`}>
         <Button className={classes.title} size="small">
             {truncate(title)}
         </Button>
