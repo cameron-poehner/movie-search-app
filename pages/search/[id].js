@@ -21,7 +21,8 @@ export default function MoviesListPage({ data, query }) {
     const classes = useStyles();
     const { id } = query;
     const { results } = data;
-
+    console.log('query', query); 
+    console.log('data', data);
     function truncate(string) {
         let replace = string.slice(0, 20).concat('...');
         return string.length <= 20 ? string : replace;
