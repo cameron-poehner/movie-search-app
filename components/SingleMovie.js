@@ -26,10 +26,21 @@ export default function SingleMovie({ data }) {
                   alt={title}
                   className={classes.Poster} />
                 <div className={classes.descContainer}>
-                <p className={classes.director}><span className={classes.span}>Tagline:</span>{tagline}</p>
-                    <p className={classes.director}><span className={classes.span}>{director.length > 1 ? 'Directors' : 'Director'}:</span> {starsList(director)}</p>
-                    <p className={classes.director}><span className={classes.span}>{writer.length > 1 ? 'Writers' : 'Writer'}:</span> {starsList(writer)}</p>
-                    <p className={classes.director}><span className={classes.span}>Stars:</span> {starsList(shortCast)}</p>
+                <p className={classes.director}>
+                    <span className={classes.span}>Tagline:</span>{tagline}
+                </p>
+                <p className={classes.director}>
+                    <span className={classes.span}>{director.length > 1 ? 'Directors' : 'Director'}:</span> 
+                    {starsList(director)}
+                </p>
+                <p className={classes.director}>
+                    <span className={classes.span}>{writer.length > 1 ? 'Writers' : 'Writer'}:</span> 
+                    {starsList(writer)}
+                </p>
+                <p className={classes.director}>
+                    <span className={classes.span}>Stars:</span> 
+                    {starsList(shortCast)}
+                </p>
                 </div>
             </div>
             <section className={classes.details}>
