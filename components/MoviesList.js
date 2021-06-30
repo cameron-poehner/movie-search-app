@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import MovieCard from './MovieCard';
 import { Paper } from '@material-ui/core';
 
-export default function MoviesList({ results }) {
+export default function MoviesList({ results, query, data }) {
     const classes = useStyles();
 
     console.log('movie', results)

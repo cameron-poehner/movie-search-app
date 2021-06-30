@@ -2,7 +2,8 @@ import SingleMovie from '../../components/SingleMovie'
 import { makeStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
 
-export async function getServerSideProps({ id }) {
+export async function getServerSideProps({ query }) {
+    const { id } = query;
     const url = `https://api.themoviedb.org/3/movie/${id}?api_key=50ee20a8e3da5025fd2012e0cc6f35ad&language=en-US&append_to_response=details,credits`;
      const res = await fetch(url);
      const data = await res.json();

@@ -15,7 +15,8 @@ export default function MovieCard({ movie, query, data }) {
   const classes = useStyles();
   const { poster_path, title, id, vote_average } = movie;
 
-  console.log('Movie Card query', query);
+  console.log('Movie Card id', id);
+  console.log('Movie Card Query', query);
   console.log('Movie Card data', data);
 
   function truncate(string) {
@@ -26,14 +27,21 @@ export default function MovieCard({ movie, query, data }) {
   return (
     <Card className={classes.root} raised={true}>
       <CardActionArea>
-      <Link href={`/movies/${id}`}>
+      <Link href={{
+        pathname: `/movies/[id]`,
+        query: {
+          id: id,
+        }
+        }}
+        passHref>
+          <a>
         <CardMedia
           className={classes.media}
           image={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${poster_path}`}
           alt=""
           title="Contemplative Reptile"
           layout="fill"
-        />
+        /></a>
         </Link>
       
       </CardActionArea>
