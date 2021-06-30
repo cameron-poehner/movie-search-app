@@ -1,6 +1,6 @@
 import { makeStyles, Paper } from "@material-ui/core";
 import StarIcon from '@material-ui/icons/Star';
-import { commaList } from '../lib/helper';
+import { genreList, starsList } from '../lib/helper';
 
 export default function MovieHeading({ data }) {
     const classes = useStyles();
@@ -29,7 +29,7 @@ export default function MovieHeading({ data }) {
             ({yearFormatter(release_date)})</h2>
             <div className={classes.description}>
               <span className={classes.runtime}>{runTime(runtime)}</span> | 
-              <span className={classes.descItem}>{commaList(genres)}</span> | 
+              <span className={classes.descItem}>{genreList(genres)}</span> | 
               <span className={classes.descItem}>{new Intl.DateTimeFormat('en-US', options).format(date)}</span>
             </div>
           </div>  

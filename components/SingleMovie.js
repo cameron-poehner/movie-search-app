@@ -1,7 +1,7 @@
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 import MovieHeading from './MovieHeading';
-import { commaList } from '../lib/helper';
+import { genreList, starsList } from '../lib/helper';
 import CastMember from './CastMember';
 import MovieDetails from './MovieDetails';
 
@@ -27,9 +27,9 @@ export default function SingleMovie({ data }) {
                   className={classes.Poster} />
                 <div className={classes.descContainer}>
                 <p className={classes.director}><span className={classes.span}>Tagline:</span>{tagline}</p>
-                    <p className={classes.director}><span className={classes.span}>{director.length > 1 ? 'Directors' : 'Director'}:</span> {commaList(director)}</p>
-                    <p className={classes.director}><span className={classes.span}>{writer.length > 1 ? 'Writers' : 'Writer'}:</span> {commaList(writer)}</p>
-                    <p className={classes.director}><span className={classes.span}>Stars:</span> {commaList(shortCast)}</p>
+                    <p className={classes.director}><span className={classes.span}>{director.length > 1 ? 'Directors' : 'Director'}:</span> {genreList(director)}</p>
+                    <p className={classes.director}><span className={classes.span}>{writer.length > 1 ? 'Writers' : 'Writer'}:</span> {genreList(writer)}</p>
+                    <p className={classes.director}><span className={classes.span}>Stars:</span> {starsList(shortCast)}</p>
                 </div>
             </div>
             <section className={classes.details}>
