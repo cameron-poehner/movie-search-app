@@ -14,11 +14,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { IsoOutlined, Router } from '@material-ui/icons';
-import Movie from './Movie';
-import { useSelector, useDispatch } from 'react-redux';
-import { userQuery, selectQuery } from '../store/querySlice';
-import { connect } from 'react-redux'
 import { moviesResults } from '../store/moviesSlice'
 import { useRouter } from 'next/router'
 import Link from 'next/link'

@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import Link from 'next/link'
 import StarIcon from '@material-ui/icons/Star';
 import StarOutlineIcon from '@material-ui/icons/StarOutline';
-import '../next.config.js';
 
 export default function MovieCard({ movie, query, data }) {
   const classes = useStyles();
