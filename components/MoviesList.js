@@ -5,23 +5,12 @@ import { useState, useEffect } from 'react';
 
 export default function MoviesList({ results }) {
     const classes = useStyles();
-    const [sorted, setSorted] = useState(results);
 
     console.log('movie', results)
-
-
-    // const clickSort = (e) => {
-    //     console.log(e)
-    //     let sort = [...sorted];
-    //     let reversed = sort.reverse();
-    //     results = sorted;
-    //     setSorted(reversed);
-    // }
 
     return (
 
         <Paper elevation={3} className={classes.root}>
-        {/* <button onClick={clickSort}>Sort?</button> */}
         {results.map(movie => {
                   return (
                    <MovieCard key={movie.id} movie={movie} />

@@ -27,7 +27,7 @@ export default function MovieCard({ movie }) {
       <Link href={{
           pathname: `/movies/[id]`,
           query: {
-            id: id
+            id: movie.id
           },
         }}>
         <CardMedia
@@ -55,7 +55,7 @@ export default function MovieCard({ movie }) {
       <Link href={{
           pathname: `/movies/[id]`,
           query: {
-            id: id
+            id: movie.id
           },
         }}>
         <Button className={classes.title} size="small">
