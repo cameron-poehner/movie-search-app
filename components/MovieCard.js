@@ -12,9 +12,12 @@ import StarIcon from '@material-ui/icons/Star';
 import StarOutlineIcon from '@material-ui/icons/StarOutline';
 import '../next.config.js';
 
-export default function MovieCard({ movie }) {
+export default function MovieCard({ movie, query, data }) {
   const classes = useStyles();
   const { poster_path, title, id, vote_average } = movie;
+
+  console.log('Movie Card query', query);
+  console.log('Movie Card data', data);
 
   function truncate(string) {
     let replace = string.slice(0, 20).concat('...');

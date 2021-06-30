@@ -13,7 +13,7 @@ export default function MoviesList({ results }) {
         <Paper elevation={3} className={classes.root}>
         {results.map(movie => {
                   return (
-                   <MovieCard key={movie.id} movie={movie} />
+                   <MovieCard key={movie.id} movie={movie} query={query} data={data} />
                 )})}        
         </Paper>
     

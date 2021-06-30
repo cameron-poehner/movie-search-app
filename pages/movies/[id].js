@@ -17,6 +17,10 @@ export async function getServerSideProps({ id }) {
 
 export default function SingleMoviePage({ data, query }) {
     const classes = useStyles();
+
+    console.log('Single Move Query', query);
+    console.log('Single Movie data', data);
+
     return (
         <div className={classes.root}>
         <Head>
