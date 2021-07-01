@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
         background: 'black',
         fontFamily: 'Roboto',
         width: '70vw',
-        margin: '0',
+        margin: '4rem 0',
         padding: '0'
     },
     container: {

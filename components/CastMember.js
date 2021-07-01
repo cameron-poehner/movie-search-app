@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
         textTransform: 'none',
         margin: '1rem',
         '&:hover': {
-            color: 'blue',
+            color: '#0d47a1',
         },
     },
     text: {
