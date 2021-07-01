@@ -13,7 +13,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { moviesResults } from '../store/moviesSlice'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
@@ -172,14 +171,6 @@ function Navbar() {
     <div className={classes.grow}>
       <AppBar className={classes.root} position="static">
         <Toolbar>
-          {/* <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton> */}
           <Typography className={classes.title} variant="h6" noWrap>
             <Link
               href="/" 
