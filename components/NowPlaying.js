@@ -1,6 +1,5 @@
 import { Button, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import MovieCard from '../components/MovieCard'
 import SimpleImageSlider from 'react-simple-image-slider';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

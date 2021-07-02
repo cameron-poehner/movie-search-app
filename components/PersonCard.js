@@ -11,33 +11,27 @@ import Link from 'next/link'
 import StarIcon from '@material-ui/icons/Star';
 import StarOutlineIcon from '@material-ui/icons/StarOutline';
 
-export default function MovieCard({ movie, query, data }) {
-  const classes = useStyles();
-  const { poster_path, title, id, vote_average } = movie;
+export default function PersonCard({ person, data, query }) {
+    const classes = useStyles();
 
-  console.log('Movie Card id', id);
-  console.log('Movie Card Query', query);
-  console.log('Movie Card data', data);
+    const { name, id, profile_path, popularity } = person;
 
-  function truncate(string) {
-    let replace = string.slice(0, 20).concat('...');
-    return string.length <= 20 ? string : replace;
-  }
+    console.log('person', person);
 
-  return (
-    <Card className={classes.root} raised={true}>
+    return(
+        <Card className={classes.root} raised={true}>
       <CardActionArea>
       <Link href={{
-        pathname: `/movies/[id]`,
-        query: {
-          id: id,
-        }
-        }}
+          pathname: `/person/[id]`,
+          query: {
+              id: id,
+          }
+      }}
         passHref>
           <a>
         <CardMedia
           className={classes.media}
-          image={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${poster_path}`}
+          image={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${profile_path}`}
           alt=""
           title="Contemplative Reptile"
           layout="fill"
@@ -49,7 +43,7 @@ export default function MovieCard({ movie, query, data }) {
       <CardActions className={classes.buttons}>
         <StarIcon size="small" className={classes.star} />
         <Typography>
-          {vote_average}
+          {popularity}
           </Typography>
         <Button size="small" className={classes.button}>
           <StarOutlineIcon />
@@ -57,32 +51,37 @@ export default function MovieCard({ movie, query, data }) {
        
         
       </CardActions>
-      <Link href={`/movies/${id}`}>
+      <Link href={{
+          pathname: `/person/[id]`,
+          query: {
+              id: id,
+          }
+      }}>
         <Button className={classes.title} size="small">
-            {truncate(title)}
+            {name}
         </Button>
         </Link>
           </CardContent>
     </Card>
-  );
-}
+    )
+} 
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 250,
-    width: 250,
-    height: 450,
-    margin: '1rem',
-    padding: '0',
-    boxSizing: 'border-box',
-    color: 'white',
-    background: '#272c34',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'start'
-  },
-  media: {
+const useStyles = makeStyles((theme) => ({
+    root: {
+        maxWidth: 250,
+        width: 250,
+        height: 450,
+        margin: '1rem',
+        padding: '0',
+        boxSizing: 'border-box',
+        color: 'white',
+        background: '#272c34',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'start'
+,    },
+media: {
     width: '100%',
     maxWidth: '100%',
     height: 345,
@@ -119,4 +118,4 @@ const useStyles = makeStyles({
   star: {
     color: '#F4C518'
   }
-});
+}))

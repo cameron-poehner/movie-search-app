@@ -18,7 +18,7 @@ export default function TVShowPage({query, data}) {
 
     return (
         <div className={classes.root}>
-        <TVShow query={query} data={data} />
+          <TVShow query={query} data={data} />
         </div>
     )
 }

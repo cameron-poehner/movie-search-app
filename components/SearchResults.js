@@ -1,20 +1,38 @@
 import { makeStyles } from '@material-ui/core/styles';
-import MovieCard from './MovieCard';
+import TitlesCard from './TitlesCard';
 import { Paper } from '@material-ui/core';
+import PersonCard from './PersonCard'
 
-export default function MoviesList({ results, query, data }) {
+export default function SearchResults({ results, query, data }) {
     const classes = useStyles();
 
-    console.log('movie', results)
+    console.log('search results', results)
+
+    const titles = results.filter(item => item.media_type ==='tv' || item.media_type === 'movie');
+    const people = results.filter(item => item.media_type === 'person');
+
+    console.log('people filter', people);
+    console.log('title filter', titles);
 
     return (
-
+        <div>
+        <h2>Titles</h2>
         <Paper elevation={3} className={classes.root}>
-        {results.map(movie => {
+            
+        {titles.map(movie => {
                   return (
-                   <MovieCard key={movie.id} movie={movie} query={query} data={data} />
+                   <TitlesCard key={movie.id} movie={movie} query={query} data={data} />
                 )})}        
         </Paper>
+        <h3>People</h3>
+        <Paper elevation={3} className={classes.root}>
+            
+        {people.map(person => {
+                  return (
+                   <PersonCard key={person.id} person={person} query={query} data={data} />
+                )})}        
+        </Paper>
+        </div>
     
     )
 }

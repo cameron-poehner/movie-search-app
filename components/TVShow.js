@@ -1,13 +1,15 @@
 import { makeStyles } from '@material-ui/core/styles';
+import TVHeading from './TVHeading';
 
-export default function TVShow ({query}) {
+export default function TVShow ({ query, data }) {
     const classes = useStyles();
 
     console.log('tv show', query);
+    console.log('tv show data', data);
 
     return (
         <div className={classes.root}>
-            I worked!
+            <TVHeading data={data} query={query} />
         </div>
     )
 }

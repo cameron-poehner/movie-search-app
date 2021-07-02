@@ -1,6 +1,7 @@
-import MoviesList from '../../components/MoviesList'
+import SearchResults from '../../components/SearchResults'
 import { makeStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
+
 
 export async function getServerSideProps({ query }) {
     const { id } = query;
@@ -36,7 +37,7 @@ export default function MoviesListPage({ data, query }) {
             <title>IMDb | Search</title>
           </Head>
             <h2 className={classes.Title}>Results for '{truncate(id)}'</h2>
-            {/* <MoviesList results={results} data={data} query={query} /> */}
+            <SearchResults results={results} data={data} query={query} />
         </div>
     )
 }
