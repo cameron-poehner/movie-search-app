@@ -67,13 +67,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-evenly',
         alignItems: 'flex-start'
     },
-    container: {
-        width: '70vw',
-        boxSizing: 'border-box',
-        display: 'flex',
-        justifyContent: 'flex-start',
-        alignItems: 'center'
-    },
+  
     Poster: {
        boxSizing: 'border-box',
        height: '100%',
