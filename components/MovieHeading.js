@@ -1,15 +1,12 @@
 import { makeStyles, Paper } from "@material-ui/core";
 import StarIcon from '@material-ui/icons/Star';
 import { genreList, starsList } from '../lib/helper';
+import { yearFormatter } from '../lib/helper'
 
 export default function MovieHeading({ data }) {
     const classes = useStyles();
 
     const { title, release_date, runtime, genres, vote_average, vote_count } = data;
-
-    const yearFormatter = (fullDate) => {
-            return fullDate.slice(0, 4);
-    }
 
     const date = new Date(Date.parse(release_date));
     const options = { day: 'numeric', month: 'long', year: 'numeric' };

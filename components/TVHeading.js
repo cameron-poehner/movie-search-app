@@ -1,16 +1,11 @@
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import StarIcon from '@material-ui/icons/Star';
+import { yearFormatter } from '../lib/helper';
 
 export default function TVHeading({ query, data }) {
     const classes = useStyles();
     const { name, first_air_date, last_air_date, vote_average, vote_count } = data;
-
-    const yearFormatter = (year) => {
-        let string = year.slice(0, 4);
-        console.log('year', string);
-        return string;
-    }
 
     return (
         <header className={classes.root}>
