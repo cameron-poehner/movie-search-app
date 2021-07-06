@@ -3,6 +3,7 @@ import TVHeading from './TVHeading';
 import { starsList, genreList } from '../lib/helper'
 import CastMember from '../components/CastMember'
 import TitlesCard from '../components/TitlesCard'
+import { MicNone } from '@material-ui/icons';
 
 export default function TVShow ({ query, data }) {
     const classes = useStyles();
@@ -46,26 +47,27 @@ export default function TVShow ({ query, data }) {
                     </p>
                 </div>
             </div>
-            <div>
                 <h3>Videos</h3>
+            <div className={classes.videos}>
             {results.map(video => 
                 <iframe 
-                width="560" 
-                height="315" 
+                key={video.id} 
                 src={`https://www.youtube.com/embed/${video.key}`}
                 title="YouTube video player" 
-                frameborder="0" 
+                frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
+                allowFullScreen
+                samesite="secure"
+                className={classes.video}>
               </iframe>
               )}
               </div>
               <section className={classes.details}>
                 <h2 className={classes.cast}>Cast</h2>
-            {cast.map(member => <CastMember member={member} />)}
+            {cast.map(member => <CastMember key={member.id} member={member} />)}
             </section>
+            <h2>More Like This</h2>
             <section className={classes.similar}>
-                <h2>More Like This</h2>
                 {recommended.map(movie => <TitlesCard key={movie.id} movie={movie} />)}
             </section>
             <section>
@@ -80,7 +82,6 @@ export default function TVShow ({ query, data }) {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        
         color: 'white',
         height: 'auto',
         margin: '2rem',
@@ -111,5 +112,36 @@ const useStyles = makeStyles((theme) => ({
     },
     span: {
         marginRight: '1rem'
-    }
+    },
+    videos: {
+        overflowX: 'scroll',
+        margin: '0',
+        padding: '0',
+        overscrollBehaviorX: 'contain',
+        boxSizing: 'content-box',
+        display: 'flex',
+        justifyContent: 'start',
+      
+        // padding: '1rem',
+        // paddingLeft: '0',
+    },
+    video: {
+        margin: '2rem',
+        marginLeft: '0',
+        minWidth: '560px',
+        minHeight: '315px',
+        boxSizing: 'content-box',
+        overscrollBehaviorX: 'none'
+    },
+    similar: {
+        width: 'auto',
+        overflowX: 'scroll',
+        display: 'flex',
+        justifyContent: 'start',
+        flexWrap:'no-wrap',
+        boxSizing: 'border-box',
+        position: 'relative',
+        marginRight: '2rem',
+        paddingRight: '2rem'
+    },
 }))

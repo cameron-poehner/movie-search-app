@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         color: 'white',
         display: 'grid',
+        gridGap: '2rem',
         gridTemplateColumns: '1fr 1fr 1fr',
         justifyItems: 'center',
         alignItems: 'center',

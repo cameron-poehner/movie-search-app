@@ -17,10 +17,10 @@ export default function PersonDetails({ data }) {
 
     return (
         <section className={classes.root}>
-          <article className={classes.bio}>
+          {biography ? <article className={classes.bio}>
             <h3>Biography</h3>
             <p>{biography}</p>
-          </article>
+            </article> : null}
           <div className={classes.container}>
               <h3 className={classes.plot}>Filmography</h3>
               <h4 className={classes.plot}><strong>Actor</strong> ({`${cast.length} credits`}) </h4>
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     container: {
         background: 'black',
         padding: '4rem',
-        
+        width: '100%'
     },
     actorHeading: {
         margin: '1rem',

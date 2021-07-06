@@ -78,18 +78,18 @@ export default function TitlesCard({ movie, query, data }) {
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 250,
-    width: 250,
+    maxWidth: '250px',
+    minWidth: '250px',
     height: 450,
-    margin: '1rem',
-    padding: '0',
     boxSizing: 'border-box',
     color: 'white',
     background: '#272c34',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'start'
+    alignItems: 'start',
+    margin: '2rem',
+    marginLeft: '0'
   },
   media: {
     width: '100%',
