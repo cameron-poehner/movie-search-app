@@ -37,7 +37,7 @@ export default function PersonDetails({ data }) {
                   type="text">{member.title}</Button>
                   </Link>
                 <p className={classes.plot}>{member.character}</p>
-                <p className={classes.year}>{yearFormatter(member.release_date)}</p>
+                <p className={classes.year}>{member.release_date ? yearFormatter(member.release_date) : 'N/A'}</p>
               </Paper>)}
           </div>
         </section>

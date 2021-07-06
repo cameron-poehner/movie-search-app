@@ -47,7 +47,7 @@ export default function TVShow ({ query, data }) {
                     </p>
                 </div>
             </div>
-                <h3>Videos</h3>
+                <h3 className={classes.videosHeading}>Videos</h3>
             <div className={classes.videos}>
             {results.map(video => 
                 <iframe 
@@ -62,19 +62,23 @@ export default function TVShow ({ query, data }) {
               </iframe>
               )}
               </div>
-              <section className={classes.details}>
+            <section className={classes.details}>
+                <div className={classes.castContainer}>
                 <h2 className={classes.cast}>Cast</h2>
             {cast.map(member => <CastMember key={member.id} member={member} />)}
+            </div>
             </section>
-            <h2>More Like This</h2>
+            <h2 className={classes.similarHeading}>More Like This</h2>
             <section className={classes.similar}>
                 {recommended.map(movie => <TitlesCard key={movie.id} movie={movie} />)}
             </section>
-            <section>
-                <h2>StoryLine</h2>
-                <p>{overview}</p>
+            <section className={classes.sectionContainer}>
+                <div className={classes.deetsContainer}>
+                <h2 className={classes.deets}>StoryLine</h2>
+                <p className={classes.plot}>{overview}</p>
                 <div><strong>Tagline: </strong>{tagline}</div>
                 <div><strong>Genres: </strong>{genreList(genres)}</div>
+                </div>
             </section>
         </div>
     )
@@ -85,11 +89,12 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
         height: 'auto',
         margin: '2rem',
-        width: '70vw'
+        width: '70vw',
+        background: '#1c1c1c',
     },
     container: {
         width: '70vw',
-        boxSizing: 'border-box',
+        boxSizing: 'content-box',
         fontFamily: 'Roboto',
         letterSpacing: '1px',
         display: 'flex',
@@ -113,17 +118,23 @@ const useStyles = makeStyles((theme) => ({
     span: {
         marginRight: '1rem'
     },
+    videosHeading: {
+        padding: '1rem',
+        fontFamily: 'Roboto',
+        fontSize: '2.5rem',
+        fontWeight: '200',
+        letterSpacing: '2px'
+    },
     videos: {
         overflowX: 'scroll',
-        margin: '0',
-        padding: '0',
+        margin: '1rem',
+        marginTop: '0',
+        paddingTop: '0',
+        padding: '1rem',
         overscrollBehaviorX: 'contain',
         boxSizing: 'content-box',
         display: 'flex',
         justifyContent: 'start',
-      
-        // padding: '1rem',
-        // paddingLeft: '0',
     },
     video: {
         margin: '2rem',
@@ -133,6 +144,36 @@ const useStyles = makeStyles((theme) => ({
         boxSizing: 'content-box',
         overscrollBehaviorX: 'none'
     },
+    details: {
+        padding: '1rem',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    cast: {
+        // alignSelf: 'start',
+        justifySelf: 'start',
+        padding: '1rem',
+        fontFamily: 'Roboto',
+        fontSize: '2.5rem',
+        fontWeight: '200',
+        letterSpacing: '2px',
+        paddingLeft: '0'
+    },
+    castContainer: {
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        justifyItems: 'center',
+        width: '75%'
+    },
+    similarHeading: {
+        padding: '1rem',
+        fontFamily: 'Roboto',
+        fontSize: '2.5rem',
+        fontWeight: '200',
+        letterSpacing: '2px'
+    },
     similar: {
         width: 'auto',
         overflowX: 'scroll',
@@ -140,8 +181,38 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'start',
         flexWrap:'no-wrap',
         boxSizing: 'border-box',
-        position: 'relative',
-        marginRight: '2rem',
-        paddingRight: '2rem'
+        margin: '1rem',
+        marginTop: '0',
+        paddingTop: '0',
+        padding: '1rem',
+    },
+    sectionContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        alignItems: 'center',
+        paddingBottom: '4rem'
+    },
+    deetsContainer: {
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        width: '70%',
+        gridGap: '2rem',
+        fontFamily: 'Roboto',
+        letterSpacing: '2px',
+    },
+    deets: {
+        padding: '1rem',
+        paddingLeft: '0',
+        fontFamily: 'Roboto',
+        fontSize: '2.5rem',
+        fontWeight: '200',
+        letterSpacing: '2px',
+    },
+    plot: {
+        fontFamily: 'Roboto',
+        fontSize: '1rem',
+        lineHeight: '1.5rem',
+        letterSpacing: '2px'
     },
 }))

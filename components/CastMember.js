@@ -17,7 +17,8 @@ export default function CastMember({ member }) {
             query: {
                 id: id,
             }
-        }}>
+        }}
+        passHref>
         <Button type="text" className={classes.name}>{member.name}</Button>
         </Link>
         <span type="text" className={classes.text}>{member.character}</span>
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr',
-        width: '70%',
+        width: '100%',
         textAlign: 'left',
         justifyItems: 'start',
         alignItems: 'center',
