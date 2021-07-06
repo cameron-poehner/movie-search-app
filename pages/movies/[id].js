@@ -1,4 +1,4 @@
-import SingleMovie from '../../components/SingleMovie'
+import Movie from '../../components/Movie'
 import { makeStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
 
@@ -26,7 +26,7 @@ export default function SingleMoviePage({ data, query }) {
         <Head>
             <title>IMDb | {data.Title}</title>
         </Head>
-              <SingleMovie data={data} />
+              <Movie data={data} />
         </div>
     )
 }

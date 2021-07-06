@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import TVShow from "../../components/TVShow";
+import TVShow from "../../components/TV/TVShow";
 
 export async function getServerSideProps({ query }) {
     const { id } = query;

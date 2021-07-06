@@ -1,7 +1,7 @@
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import StarIcon from '@material-ui/icons/Star';
-import { yearFormatter } from '../lib/helper';
+import { yearFormatter } from '../../lib/helper';
 
 export default function TVHeading({ query, data }) {
     const classes = useStyles();
