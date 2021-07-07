@@ -1,7 +1,7 @@
 import { makeStyles, Paper } from "@material-ui/core";
 import StarIcon from '@material-ui/icons/Star';
-import { genreList, starsList } from '../lib/helper';
-import { yearFormatter } from '../lib/helper'
+import { genreList, starsList } from '../../lib/helper';
+import { yearFormatter } from '../../lib/helper'
 
 export default function MovieHeading({ data }) {
     const classes = useStyles();

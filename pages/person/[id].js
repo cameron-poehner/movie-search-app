@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import Person from '../../components/Person'
+import Person from '../../components/People/Person'
 
 export async function getServerSideProps({ query }) {
     const { id } = query;

@@ -1,7 +1,7 @@
 import SearchResults from '../../components/SearchResults'
 import { makeStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
-
+import { truncate } from '../../lib/helper'
 
 export async function getServerSideProps({ query }) {
     const { id } = query;
@@ -20,11 +20,7 @@ export async function getServerSideProps({ query }) {
 export default function MoviesListPage({ data, query }) {
     const classes = useStyles();
     const { id } = query;
-    const { results } = data;
-    function truncate(string) {
-        let replace = string.slice(0, 20).concat('...');
-        return string.length <= 20 ? string : replace;
-      }
+   
 
     console.log('multi search query', query);
     console.log('multi search data', data);
@@ -37,7 +33,7 @@ export default function MoviesListPage({ data, query }) {
             <title>IMDb | Search</title>
           </Head>
             <h2 className={classes.Title}>Results for '{truncate(id)}'</h2>
-            <SearchResults results={results} data={data} query={query} />
+            <SearchResults data={data} query={query} />
         </div>
     )
 }

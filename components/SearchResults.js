@@ -2,36 +2,28 @@ import { makeStyles } from '@material-ui/core/styles';
 import TitlesCard from './TitlesCard';
 import { Paper } from '@material-ui/core';
 import PersonCard from './PersonCard'
+import { truncate } from '../lib/helper'
+import TitleResults from './TitleResults'
+import PeopleResults from './PeopleResults'
 
-export default function SearchResults({ results, query, data }) {
+export default function SearchResults({ query, data }) {
     const classes = useStyles();
-
+    const { results } = data;
     console.log('search results', results)
 
-    const titles = results.filter(item => item.media_type ==='tv' || item.media_type === 'movie');
+    
     const people = results.filter(item => item.media_type === 'person');
+    const titles = results.filter(item => item.media_type ==='tv' || item.media_type === 'movie');
 
-    console.log('people filter', people);
-    console.log('title filter', titles);
 
     return (
         <div>
-        <h2>Titles</h2>
-        <Paper elevation={3} className={classes.root}>
-            
-        {titles.map(movie => {
-                  return (
-                   <TitlesCard key={movie.id} movie={movie} query={query} data={data} />
-                )})}        
-        </Paper>
-        <h3>People</h3>
-        <Paper elevation={3} className={classes.root}>
-            
-        {people.map(person => {
-                  return (
-                   <PersonCard key={person.id} person={person} query={query} data={data} />
-                )})}        
-        </Paper>
+        {titles.length > 0 ? 
+        <TitleResults results={results} query={query} data={data} />
+        : null}
+        {people.length > 0 ? <PeopleResults results={results} query={query} data={data} />
+        : null}
+       
         </div>
     
     )

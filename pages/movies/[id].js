@@ -1,10 +1,10 @@
-import Movie from '../../components/Movie'
+import Movie from '../../components/Movies/Movie'
 import { makeStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
 
 export async function getServerSideProps({ query }) {
     const { id } = query;
-    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=50ee20a8e3da5025fd2012e0cc6f35ad&language=en-US&append_to_response=details,credits,videos,similar`;
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=50ee20a8e3da5025fd2012e0cc6f35ad&language=en-US&append_to_response=details,credits,videos,similar,certifications`;
      const res = await fetch(url);
      const data = await res.json();
      return {

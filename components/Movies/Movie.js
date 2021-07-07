@@ -1,13 +1,11 @@
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 import MovieHeading from './MovieHeading';
-import { genreList, starsList } from '../lib/helper';
-import CastMember from './CastMember';
-import MovieDetails from './Movies/MovieDetails';
-import VideoSlider from './VideoSlider'
-import MovieDescription from './Movies/MovieDescription';
-import CastList from './CastList'
-import Similar from './Similar'
+import MovieDetails from './MovieDetails';
+import VideoSlider from '../VideoSlider'
+import MovieDescription from './MovieDescription';
+import CastList from '../CastList'
+import Similar from '../Similar'
 
 export default function Movie({ data }) {
     const classes = useStyles();
