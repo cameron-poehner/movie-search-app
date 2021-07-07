@@ -17,14 +17,14 @@ export default function SearchResults({ query, data }) {
 
 
     return (
-        <div>
+        <Paper elevation={3} className={classes.root}>
         {titles.length > 0 ? 
         <TitleResults results={results} query={query} data={data} />
         : null}
         {people.length > 0 ? <PeopleResults results={results} query={query} data={data} />
         : null}
        
-        </div>
+        </Paper>
     
     )
 }
@@ -32,48 +32,13 @@ export default function SearchResults({ query, data }) {
 const useStyles = makeStyles((theme) => ({
     root: {
         color: 'white',
-        display: 'grid',
-        gridGap: '2rem',
-        gridTemplateColumns: '1fr 1fr 1fr',
-        justifyItems: 'center',
-        alignItems: 'center',
-        width: '70vw',
-        listStyle: 'none',
-        height: 'auto',
-        margin: '5rem',
-        padding: '2rem',
-        background: 'black',
-        boxSizing: 'border-box',
-    },
-  
-    item: {
+        fontFamily: 'Roboto',
+        background: '#1c1c1c',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '10vw',
-        height: '35vh',
-        margin: '1rem',
-        background: '#1c1c1c',
+        margin: '2rem',
+        padding: '2rem',
+        height: 'auto',
+        boxSizing: 'border-box'
     },
-    poster: {
-        height: '200px',
-        width: '150px',
-        borderRadius: '5px'
-    },
-    Title: {
-        fontFamily: 'Roboto',
-        fontWeight: '200',
-        fontSize: '1rem',
-        color: 'white',
-        '&:hover': {
-            color: 'blue',
-
-        }
-    },
-    Year: {
-        fontFamily: 'Roboto',
-        textAlign: 'right',
-    },
-
 }))

@@ -9,33 +9,42 @@ export default function TitleResults({ query, data }) {
     const titles = results.filter(item => item.media_type ==='tv' || item.media_type === 'movie');
 
     return(
-        <section>
-        <h2>Titles</h2>
-        <Paper elevation={3} className={classes.root}>
+        <section className={classes.root}>
+        <h2 className={classes.title}>Titles</h2>
+        <div className={classes.slider}>
         
         {titles.map(movie => {
                   return (
                    <TitlesCard key={movie.id} movie={movie} query={query} data={data} />
                 )})}        
-        </Paper>
+        </div>
         </section>
     )
 }
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        color: 'white',
-        display: 'grid',
-        gridGap: '2rem',
-        gridTemplateColumns: '1fr 1fr 1fr',
-        justifyItems: 'center',
-        alignItems: 'center',
-        width: '70vw',
-        listStyle: 'none',
-        height: 'auto',
-        margin: '5rem',
-        padding: '2rem',
-        background: 'black',
-        boxSizing: 'border-box',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'start',
+        paddingLeft: '1rem',
+        paddingRight: '1rem',
+        marginRight: '1rem',
+        marginLeft: '1rem'
     },
+    slider: {
+        color: 'white',
+        width: '70vw',
+        height: 'auto',
+        background: 'transparent',
+        boxSizing: 'border-box',
+        display: 'flex',
+        overflowX: 'scroll',
+        
+    },
+    title: {
+        fontFamily: 'Roboto',
+        fontSize: '2rem',
+        letterSpacing: '2px'
+    }
 }))

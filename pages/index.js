@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import NowPlaying from '../components/NowPlaying';
 
 export async function getServerSideProps() {
-  const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=50ee20a8e3da5025fd2012e0cc6f35ad&language=en-US&page=1`;
+  const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=50ee20a8e3da5025fd2012e0cc6f35ad&language=en-US&page=1&append_to_response=videos`;
   const res = await fetch(url);
   const data = await res.json();
   return {

@@ -69,9 +69,10 @@ export default function PersonCard({ person, data, query }) {
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 250,
-        width: 250,
+        minWidth: 250,
         height: 450,
-        margin: '1rem',
+        margin: '2rem',
+        marginLeft: '0',
         padding: '0',
         boxSizing: 'border-box',
         color: 'white',

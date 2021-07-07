@@ -9,33 +9,42 @@ export default function PeopleResults({ results, query, data }) {
 
 
     return(
-        <div>
-        <h3>People</h3>
-        <Paper elevation={3} className={classes.root}>
-            
+        <section className={classes.root}>
+        <h3 className={classes.title}>People</h3>
+        <div className={classes.slider}>
         {people.map(person => 
-                   <PersonCard key={person.id} person={person} query={query} data={data} />)}     
-        
-        </Paper>
+          <PersonCard key={person.id} person={person} query={query} data={data} />)}     
         </div>
+        </section>
     )
 }
 
 const useStyles = makeStyles((theme) => ({
     root: {
         color: 'white',
-        display: 'grid',
-        gridGap: '2rem',
-        gridTemplateColumns: '1fr 1fr 1fr',
-        justifyItems: 'center',
-        alignItems: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'start',
+        marginLeft: '1rem',
+        marginRight: '1rem',
+        paddingLeft: '1rem',
+        paddingRight: '1rem',
         width: '70vw',
-        listStyle: 'none',
-        height: 'auto',
-        margin: '5rem',
-        padding: '2rem',
-        background: 'black',
         boxSizing: 'border-box',
     },
+    slider: {
+        color: 'white',
+        width: '70vw',
+        height: 'auto',
+        background: 'transparent',
+        boxSizing: 'border-box',
+        display: 'flex',
+        overflowX: 'scroll',
+    },
+    title: {
+        fontFamily: 'Roboto',
+        fontSize: '2rem',
+        letterSpacing: '2px'
+    }
   
 }))
