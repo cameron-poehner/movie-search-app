@@ -1,9 +1,9 @@
 import { makeStyles } from '@material-ui/core'
 import CastMember from './CastMember'
 
-export default function CastList({ cast }) { 
+export default function CastList({ credits }) { 
     const classes = useStyles();
-
+    const { cast } = credits;
     return(
         <section className={classes.details}>
                 <div className={classes.castContainer}>
