@@ -23,16 +23,15 @@ const Navbar = () => {
     router.push(`/search/${search}`);
   };
   return (
-    <div>
-      <Link href="/">
+    <div className="sm:w-full bg-black h-20 grid grid-cols-4 justify-items-center items-center">
+      <Link className="justify-self-start mx-10" href="/">
         <Button>OMDB</Button>
       </Link>
-      <form onSubmit={handleSubmit}>
+      <form className="w-full col-span-2 sm:w-1" onSubmit={handleSubmit}>
         <Input
           name="search"
           type="search"
           onChange={handleChange}
-          className=""
           placeholder="Search your favorite movies"
           value={search}
         />
