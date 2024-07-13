@@ -21,23 +21,26 @@ const Navbar = () => {
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
     router.push(`/search/${search}`);
+    setSearch('');
   };
   return (
-    <div>
-      <Link href="/">
-        <Button>OMDB</Button>
+    <nav className="bg-black h-14 flex items-center md:grid md:grid-cols-6 md:h-16 xl:h-20">
+      <Link className="mx-2 xl:mx-6" href="/">
+        <Button type="button">OMDB</Button>
       </Link>
-      <form onSubmit={handleSubmit}>
+      <form
+        className="w-7/12 mx-1 md:col-span-4 md:w-full"
+        onSubmit={handleSubmit}
+      >
         <Input
           name="search"
           type="search"
           onChange={handleChange}
-          className=""
           placeholder="Search your favorite movies"
           value={search}
         />
       </form>
-    </div>
+    </nav>
   );
 };
 export default Navbar;
