@@ -4,10 +4,6 @@ import { GET_POPULAR_SHOWS } from './data';
 import { Card, CardContent } from '@/components/ui/card';
 import { StarFilledIcon } from '@radix-ui/react-icons';
 
-// To-do: Complete Card Styles
-// To-do: Update Home Page Layout
-// To-do: refactor code where applicable
-
 interface Show {
   id: number;
   name: string;
