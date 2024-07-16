@@ -17,7 +17,6 @@ interface Show {
 const Popular = async () => {
   const { results } = await GET_POPULAR_SHOWS();
   const shows = results.slice(0, 3);
-  console.log('🎉 Resulst', shows);
 
   const dateConverter = (date: string) => {
     const dateToConvert = new Date(date);
@@ -26,21 +25,17 @@ const Popular = async () => {
       month: 'long',
       day: 'numeric',
     }).format(dateToConvert);
-    console.log('📆 Date', convert);
     return convert;
   };
 
   const getYear = (date: string) => {
     const year = new Date(date).getFullYear();
-    console.log('🎊 Year', year);
     return year;
   };
 
   const formatRating = (rating: number) => {
     return Math.floor(rating * 10) / 10;
   };
-
-  console.log('Converted Date', dateConverter('2022-01-01'));
 
   return (
     <div className="flex-col w-4/6 md:max-w-80">
