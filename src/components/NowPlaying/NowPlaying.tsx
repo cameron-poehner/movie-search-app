@@ -46,7 +46,7 @@ const NowPlaying = () => {
         }),
       ]}
     >
-      <CarouselPrevious />
+      <h1 className="text-3xl text-gray-100">Now Playing</h1>
       <CarouselContent className="bg-transparent">
         {results.map((movie: Movie) => {
           return (
@@ -65,6 +65,7 @@ const NowPlaying = () => {
           );
         })}
       </CarouselContent>
+      <CarouselPrevious />
       <CarouselNext />
     </Carousel>
   );
