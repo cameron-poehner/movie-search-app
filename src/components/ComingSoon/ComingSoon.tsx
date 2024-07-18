@@ -22,19 +22,32 @@ interface Movie {
 
 const ComingSoon = async () => {
   const results = await GET_COMING_SOON();
-  // console.log('Results 🎉', results);
+
+  const formatDate = (date: string) => {
+    const dateToConvert = new Date(date);
+    const convert = Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: 'numeric',
+    }).format(dateToConvert);
+    return convert;
+  };
 
   return (
     <Carousel
       className="w-4/6 max-w-80"
-      opts={{ align: 'center', slidesToScroll: 'auto', loop: true }}
+      opts={{
+        align: 'center',
+        slidesToScroll: 'auto',
+        loop: true,
+        inViewThreshold: 0,
+      }}
     >
-      <CarouselContent className="w-1/2">
+      <CarouselContent className="w-32 flex">
         {results.map((movie: Movie) => {
           return (
             <CarouselItem key={movie.id}>
-              <Card className="h-48">
-                <CardContent className="flex flex-col items-center justify-between text-sm h-44">
+              <Card className="h-52">
+                <CardContent className="flex flex-col items-center text-sm">
                   <div className="relative h-36 w-full rounded-t-md">
                     <Image
                       src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -43,9 +56,9 @@ const ComingSoon = async () => {
                       className="rounded-t-md"
                     />
                   </div>
-                  <span className="text-center flex flex-col justify-center text-xs w-full h-auto rounded-b-md">
+                  <span className="font-sans tracking-wide flex flex-col items-center mt-3 pl-2 text-xs w-full rounded-b-md">
                     <p>In theaters</p>
-                    <p>{movie.release_date}</p>
+                    <p>{formatDate(movie.release_date)}</p>
                   </span>
                 </CardContent>
               </Card>
