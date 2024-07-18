@@ -9,10 +9,6 @@ import {
 import { Card, CardContent } from '@/components/ui/card';
 import GET_COMING_SOON from '@/components/data';
 
-// To-do: Style individual card
-// To-do: Map over list of upcoming movies for cards
-// To-do: Style carousel
-
 interface Movie {
   id: number;
   poster_path: string;
