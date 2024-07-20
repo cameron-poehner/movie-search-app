@@ -30,7 +30,7 @@ const ComingSoon = async () => {
 
   return (
     <Carousel
-      className="w-4/6 max-w-80 md:max-w-full self-start md:self-center md:row-start-2 md:col-span-6 md:justify-self-center"
+      className="w-4/6 sm:w-5/6 md:w-4/6 self-center md:row-start-2 md:col-span-6 md:justify-self-center xl:w-1/2"
       opts={{
         align: 'center',
         slidesToScroll: 2,
@@ -51,6 +51,7 @@ const ComingSoon = async () => {
                       src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                       alt={movie.title}
                       fill
+                      sizes="(min-width:320px) 50vw, 50vh"
                       className="rounded-t-md"
                     />
                   </div>

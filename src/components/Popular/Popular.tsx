@@ -38,7 +38,7 @@ const Popular = async () => {
   };
 
   return (
-    <div className="w-4/6 h-full md:max-w-80 md:col-start-4 md:col-span-2 md:w-full">
+    <div className="w-4/6 h-full md:max-w-80 md:col-start-4 md:col-span-2 md:w-full lg:h-max lg:max-w-full">
       <h2 className="text-center text-3xl text-gray-100 my-2">Popular Shows</h2>
       <div className="grid gap-2">
         {shows.map((show: Show) => {
