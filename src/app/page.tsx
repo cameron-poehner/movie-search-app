@@ -5,7 +5,7 @@ import ComingSoon from '@/components/ComingSoon/ComingSoon';
 export default function Home() {
   return (
     <main>
-      <div className="grid h-full justify-items-center items-center grid-rows-4 gap-12">
+      <div className="grid h-full justify-items-center items-center grid-rows-3 md:grid-rows-2 gap-12 md:grid-cols-6 md:gap-2">
         <NowPlaying />
         <Popular />
         <ComingSoon />

@@ -30,14 +30,16 @@ const ComingSoon = async () => {
 
   return (
     <Carousel
-      className="w-4/6 max-w-80"
+      className="w-4/6 sm:w-5/6 md:w-4/6 self-center md:row-start-2 md:col-span-6 md:justify-self-center xl:w-1/2"
       opts={{
         align: 'center',
-        slidesToScroll: 'auto',
+        slidesToScroll: 2,
         loop: true,
         inViewThreshold: 0,
       }}
     >
+      <h2 className="text-center text-3xl text-gray-100 my-2">Coming Soon</h2>
+      <CarouselPrevious className="absolute z-10 left-0 bg-gray-400 bg-opacity-20 hover:bg-gray-600" />
       <CarouselContent className="w-32 flex">
         {results.map((movie: Movie) => {
           return (
@@ -49,6 +51,7 @@ const ComingSoon = async () => {
                       src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                       alt={movie.title}
                       fill
+                      sizes="(min-width:320px) 50vw, 50vh"
                       className="rounded-t-md"
                     />
                   </div>
@@ -62,8 +65,7 @@ const ComingSoon = async () => {
           );
         })}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselNext className="absolute z-10 right-0 bg-gray-400 bg-opacity-20 hover:bg-gray-600" />
     </Carousel>
   );
 };

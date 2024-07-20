@@ -39,25 +39,31 @@ const NowPlaying = () => {
 
   return (
     <Carousel
-      className="w-4/6 mt-8 md:max-w-80"
+      className="w-4/6 max-w-80 sm:w-full sm:h-full md:col-span-2 md:col-start-2 lg:max-w-full"
       plugins={[
         Autoplay({
           delay: 5000,
         }),
       ]}
+      opts={{
+        loop: true,
+        align: 'center',
+      }}
     >
-      <CarouselPrevious />
+      <h1 className="text-center text-3xl text-gray-100 my-2">Now Playing</h1>
+      <CarouselPrevious className="absolute z-10 left-0 top-[55%] xl:top-[50%] bg-gray-400 bg-opacity-20 hover:bg-gray-600" />
       <CarouselContent className="bg-transparent">
         {results.map((movie: Movie) => {
           return (
             <CarouselItem key={movie.id}>
-              <Card className="border-none">
-                <CardContent className="h-96 relative">
+              <Card className="border-none w-full h-full lg:h-auto lg:w-auto">
+                <CardContent className="relative min-h-96 min-w-full md:h-[400px] lg:h-[550px] xl:h-[800px] overflow-hidden">
                   <Image
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                     alt={movie.title || 'movie poster'}
+                    sizes="(min-width:320px) 50vw, 70vh (min-width:1024px) 90vw"
                     fill
-                    className="rounded-lg"
+                    className="rounded-lg object-cover"
                   />
                 </CardContent>
               </Card>
@@ -65,7 +71,7 @@ const NowPlaying = () => {
           );
         })}
       </CarouselContent>
-      <CarouselNext />
+      <CarouselNext className="absolute right-0 top-[55%] xl:top-[50%] hover:bg-gray-600 bg-gray-400 bg-opacity-20" />
     </Carousel>
   );
 };
