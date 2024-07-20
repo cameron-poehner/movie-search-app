@@ -30,14 +30,16 @@ const ComingSoon = async () => {
 
   return (
     <Carousel
-      className="w-4/6 max-w-80"
+      className="w-4/6 max-w-80 md:max-w-full self-start md:self-center md:row-start-2 md:col-span-6 md:justify-self-center"
       opts={{
         align: 'center',
-        slidesToScroll: 'auto',
+        slidesToScroll: 2,
         loop: true,
         inViewThreshold: 0,
       }}
     >
+      <h2 className="text-center text-3xl text-gray-100 my-2">Coming Soon</h2>
+      <CarouselPrevious className="absolute z-10 left-0 bg-gray-400 bg-opacity-20 hover:bg-gray-600" />
       <CarouselContent className="w-32 flex">
         {results.map((movie: Movie) => {
           return (
@@ -62,8 +64,7 @@ const ComingSoon = async () => {
           );
         })}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselNext className="absolute z-10 right-0 bg-gray-400 bg-opacity-20 hover:bg-gray-600" />
     </Carousel>
   );
 };

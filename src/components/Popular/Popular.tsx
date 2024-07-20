@@ -38,13 +38,13 @@ const Popular = async () => {
   };
 
   return (
-    <div className="flex-col w-4/6 md:max-w-80">
-      <h2 className="text-3xl text-gray-100 m-0 p-0">Popular Shows</h2>
-      <div>
+    <div className="w-4/6 h-full md:max-w-80 md:col-start-4 md:col-span-2 md:w-full">
+      <h2 className="text-center text-3xl text-gray-100 my-2">Popular Shows</h2>
+      <div className="grid gap-2">
         {shows.map((show: Show) => {
           return (
             <Link href={`/shows/${show.id}`} key={show.id}>
-              <Card className="border-none p-2 my-1 w-full">
+              <Card className="border-none p-2  w-full md:h-full">
                 <CardContent className="flex h-full">
                   <Image
                     src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
@@ -53,7 +53,7 @@ const Popular = async () => {
                     height={125}
                     className="rounded-lg"
                   />
-                  <span className="flex flex-col ml-2 flex-wrap justify-around items-start h-32 w-full">
+                  <span className="flex flex-col ml-2 flex-wrap justify-around items-start h-32 w-full md:h-full">
                     <h3 className="text-sm tracking-wide font-semibold leading-5 text-gray-200">
                       {show.name}
                     </h3>
