@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import {
   Carousel,
@@ -44,23 +45,25 @@ const ComingSoon = async () => {
         {results.map((movie: Movie) => {
           return (
             <CarouselItem key={movie.id}>
-              <Card className="h-52">
-                <CardContent className="flex flex-col items-center text-sm">
-                  <div className="relative h-36 w-full rounded-t-md">
-                    <Image
-                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                      alt={movie.title}
-                      fill
-                      sizes="(min-width:320px) 50vw, 50vh"
-                      className="rounded-t-md"
-                    />
-                  </div>
-                  <span className="font-sans tracking-wide flex flex-col items-center mt-3 pl-2 text-xs w-full rounded-b-md">
-                    <p>In theaters</p>
-                    <p>{formatDate(movie.release_date)}</p>
-                  </span>
-                </CardContent>
-              </Card>
+              <Link href={`/movies/${movie.id}`}>
+                <Card className="h-52">
+                  <CardContent className="flex flex-col items-center text-sm">
+                    <div className="relative h-36 w-full rounded-t-md">
+                      <Image
+                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                        alt={movie.title}
+                        fill
+                        sizes="(min-width:320px) 50vw, 50vh"
+                        className="rounded-t-md"
+                      />
+                    </div>
+                    <span className="font-sans tracking-wide flex flex-col items-center mt-3 pl-2 text-xs w-full rounded-b-md">
+                      <p>In theaters</p>
+                      <p>{formatDate(movie.release_date)}</p>
+                    </span>
+                  </CardContent>
+                </Card>
+              </Link>
             </CarouselItem>
           );
         })}

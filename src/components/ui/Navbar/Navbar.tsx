@@ -24,7 +24,7 @@ const Navbar = () => {
     setSearch('');
   };
   return (
-    <nav className="bg-neutral-900 h-14 flex items-center md:grid md:grid-cols-6 md:h-16 xl:h-20">
+    <nav className="bg-neutral-950 shadow-xl h-14 flex items-center md:grid md:grid-cols-6 md:h-16 xl:h-20">
       <Link className="mx-2 xl:mx-6 " href="/">
         <Button type="button" className="bg-neutral-100">
           OMDB

@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const Footer = async () => {
   return (
-    <footer className="bg-neutral-900 text-sm w-full h-max p-20 flex flex-col justify-center items-center">
+    <footer className="bg-neutral-950 text-sm w-full h-max p-20 flex flex-col justify-center items-center">
       <div className="flex flex-col justify-center items-center">
         <a
           href="https://www.themoviedb.org/"

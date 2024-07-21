@@ -1,6 +1,7 @@
 'use client';
 import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
+import Link from 'next/link';
 import Autoplay from 'embla-carousel-autoplay';
 import { useState, useEffect } from 'react';
 import {
@@ -52,21 +53,23 @@ const NowPlaying = () => {
     >
       <h1 className="text-center text-3xl text-gray-100 my-2">Now Playing</h1>
       <CarouselPrevious className="absolute z-10 left-0 top-[55%] xl:top-[50%] bg-gray-400 bg-opacity-20 hover:bg-gray-600" />
-      <CarouselContent className="bg-transparent">
+      <CarouselContent className="">
         {results.map((movie: Movie) => {
           return (
             <CarouselItem key={movie.id}>
-              <Card className="border-none w-full h-full lg:h-auto lg:w-auto">
-                <CardContent className="relative min-h-96 min-w-full md:h-[400px] lg:h-[550px] xl:h-[800px] overflow-hidden">
-                  <Image
-                    src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                    alt={movie.title || 'movie poster'}
-                    sizes="(min-width:320px) 50vw, 70vh (min-width:1024px) 90vw"
-                    fill
-                    className="rounded-lg object-fit"
-                  />
-                </CardContent>
-              </Card>
+              <Link href={`/movies/${movie.id}`}>
+                <Card className="border-none shadow-black z-10 w-full h-full lg:h-auto lg:w-auto">
+                  <CardContent className="relative min-h-96 min-w-full md:h-[400px] lg:h-[550px] xl:h-[800px] overflow-hidden">
+                    <Image
+                      src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                      alt={movie.title || 'movie poster'}
+                      sizes="(min-width:320px) 50vw, 70vh (min-width:1024px) 90vw"
+                      fill
+                      className="rounded-lg object-fit"
+                    />
+                  </CardContent>
+                </Card>
+              </Link>
             </CarouselItem>
           );
         })}
