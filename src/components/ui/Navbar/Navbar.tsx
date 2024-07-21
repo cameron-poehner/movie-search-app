@@ -24,9 +24,11 @@ const Navbar = () => {
     setSearch('');
   };
   return (
-    <nav className="bg-black h-14 flex items-center md:grid md:grid-cols-6 md:h-16 xl:h-20">
-      <Link className="mx-2 xl:mx-6" href="/">
-        <Button type="button">OMDB</Button>
+    <nav className="bg-neutral-900 h-14 flex items-center md:grid md:grid-cols-6 md:h-16 xl:h-20">
+      <Link className="mx-2 xl:mx-6 " href="/">
+        <Button type="button" className="bg-neutral-100">
+          OMDB
+        </Button>
       </Link>
       <form
         className="w-7/12 mx-1 md:col-span-4 md:w-full"

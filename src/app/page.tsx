@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import NowPlaying from '@/components/NowPlaying/NowPlaying';
 import Popular from '@/components/Popular/Popular';
 import ComingSoon from '@/components/ComingSoon/ComingSoon';
+
 export default function Home() {
   return (
     <main>
