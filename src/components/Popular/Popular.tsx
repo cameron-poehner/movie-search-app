@@ -38,13 +38,13 @@ const Popular = async () => {
   };
 
   return (
-    <div className="w-4/6 h-full md:max-w-80 md:col-start-4 md:col-span-2 md:w-full lg:h-max lg:max-w-full">
+    <div className="w-4/6 h-full p-5 md:max-w-80 md:col-start-4 md:col-span-2 md:w-full lg:h-max lg:max-w-full">
       <h2 className="text-center text-3xl text-gray-100 my-2">Popular Shows</h2>
       <div className="grid gap-2">
         {shows.map((show: Show) => {
           return (
             <Link href={`/shows/${show.id}`} key={show.id}>
-              <Card className="border-none p-2  w-full md:h-full">
+              <Card className="border-none p-2  w-full md:h-full shadow-black shadow-md">
                 <CardContent className="flex h-full">
                   <Image
                     src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
