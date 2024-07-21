@@ -63,7 +63,7 @@ const NowPlaying = () => {
                     alt={movie.title || 'movie poster'}
                     sizes="(min-width:320px) 50vw, 70vh (min-width:1024px) 90vw"
                     fill
-                    className="rounded-lg object-cover"
+                    className="rounded-lg object-fit"
                   />
                 </CardContent>
               </Card>
