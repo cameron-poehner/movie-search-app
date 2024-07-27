@@ -6,9 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const formatDate = (date: string, year?: string) => {
-  console.log('📆 incoming date', date);
   const dateToConvert = new Date(date);
-  console.log('📅 Date', dateToConvert);
   const convert = Intl.DateTimeFormat('en-US', {
     month: 'short',
     day: 'numeric',

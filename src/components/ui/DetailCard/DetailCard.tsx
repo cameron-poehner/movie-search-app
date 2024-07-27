@@ -11,42 +11,48 @@ import {
 import { formatDate } from '@/lib/utils';
 
 interface Details {
-  id: number;
+  href: string;
+  image: string;
+  name: string;
+  popularity: number;
+  date?: string;
 }
 
-const DetailCard = (props: any) => {
-  console.log('🚀 props', props);
+const DetailCard: React.FC<Details> = ({
+  image,
+  href,
+  name,
+  date,
+  popularity,
+}) => {
   return (
-    <Card className="w-full h-full shadow-md shadow-neutral-950 mt-2 border-white">
-      <Link href={props.href}>
-        <CardContent className="flex">
-          <div className="relative max-w-20 w-full h-max min-h-28">
-            {props.image ? (
+    <Card className="w-full  h-auto flex-grow shadow-md shadow-neutral-950 mt-2 border-white md:w-auto lg:max-w-5/6">
+      <Link href={href}>
+        <CardContent className="flex w-full lg:max-w-5/6">
+          <div className="relative max-w-20 w-full min-h-28 h-full">
+            {image ? (
               <Image
-                src={`https://image.tmdb.org/t/p/w500${props.image}`}
+                src={`https://image.tmdb.org/t/p/w500${image}`}
                 alt="image title"
                 fill
                 className="rounded-lg rounded-r-none  object-fit"
               />
             ) : (
-              <div>Image not Found</div>
+              <div className="min-h-28 h-fit bg-neutral-700 z-10 rounded-l-lg blur-[2px] text-sm flex flex-col justify-center text-center">
+                Image Not Available
+              </div>
             )}
           </div>
           <div className="flex flex-col flex-wrap items-start justify-around ml-2">
-            <CardTitle className="text-xs font-medium tracking-normal">
-              {props.props.title || props.props.name}
+            <CardTitle className="text-xs font-medium tracking-normal text-wrap">
+              {name}
             </CardTitle>
             <CardDescription className="text-xs">
-              {props.props.release_date &&
-                formatDate(props.props.release_date, 'year')}
-              {props.props.first_air_date &&
-                formatDate(props.props.first_air_date, 'year')}
+              {date && formatDate(date, 'year')}
             </CardDescription>
-            <CardFooter className="text-xs flex w-4/6">
+            <CardFooter className="text-xs flex">
               <HeartFilledIcon className="text-red-500 " />
-              <p className="ml-2 tracking-wider">
-                {Math.round(props.props.popularity)}
-              </p>
+              <p className="ml-2 tracking-wider">{Math.round(popularity)}</p>
             </CardFooter>
           </div>
         </CardContent>
