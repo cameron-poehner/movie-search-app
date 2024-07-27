@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { formatRating } from '@/lib/utils';
 import { GET_POPULAR_SHOWS } from './data';
 import { Card, CardContent } from '@/components/ui/card';
 import { StarFilledIcon } from '@radix-ui/react-icons';
@@ -18,23 +19,9 @@ const Popular = async () => {
   const { results } = await GET_POPULAR_SHOWS();
   const shows = results.slice(0, 3);
 
-  const dateConverter = (date: string) => {
-    const dateToConvert = new Date(date);
-    const convert = Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }).format(dateToConvert);
-    return convert;
-  };
-
   const getYear = (date: string) => {
     const year = new Date(date).getFullYear();
     return year;
-  };
-
-  const formatRating = (rating: number) => {
-    return Math.floor(rating * 10) / 10;
   };
 
   return (

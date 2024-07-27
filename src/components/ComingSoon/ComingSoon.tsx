@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/carousel';
 import { Card, CardContent } from '@/components/ui/card';
 import GET_COMING_SOON from '@/components/data';
+import { formatDate } from '@/lib/utils';
 
 interface Movie {
   id: number;
@@ -19,15 +20,6 @@ interface Movie {
 
 const ComingSoon = async () => {
   const results = await GET_COMING_SOON();
-
-  const formatDate = (date: string) => {
-    const dateToConvert = new Date(date);
-    const convert = Intl.DateTimeFormat('en-US', {
-      month: 'short',
-      day: 'numeric',
-    }).format(dateToConvert);
-    return convert;
-  };
 
   return (
     <Carousel
